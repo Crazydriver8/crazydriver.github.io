@@ -77,6 +77,12 @@ audio {
 	background-color: black;
 }
 
+#404Text {
+	position: absolute;
+	left: 40%;
+	top: 1%;
+}
+
 /* Initial menu */
 .menu {
   background: #202024 url('http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/uber/black-thread.png') repeat left top;
