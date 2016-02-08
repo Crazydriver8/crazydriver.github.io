@@ -29,14 +29,14 @@ audio {
 
 #skeltal p {
 	font-size: 80px;
-	font-family: cursive;
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	color: red;
 	margin: 0;
 }
 
 #skeltal a {
 	font-size: 80px;
-	font-family: cursive;
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	color: red;
 	text-decoration: none;
 	margin: 0;
