@@ -141,6 +141,7 @@ audio {
 }
 
 .icon-menu {
+  background-color: black;
   color: #fff;
   cursor: pointer;
   font-family: 'Open Sans', sans-serif;
