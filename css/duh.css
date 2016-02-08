@@ -73,11 +73,11 @@ audio {
     font-size: 48;
 }
 
-#jumbotron-404 {
+.jumbotron-404 {
 	background-color: black;
 }
 
-#404Text {
+.404Text {
 	position: absolute;
 	left: 40%;
 	top: 1%;
