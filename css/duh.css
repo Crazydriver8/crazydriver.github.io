@@ -46,6 +46,12 @@ audio {
 	font-size: 120px;
     font-family:impact;
     color:red;
+	text-align: center;
+}
+
+#fuck a {
+	text-decoration: none;
+	color: red;
 }
 
 #aboutText {
