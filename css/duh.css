@@ -42,7 +42,7 @@ audio {
 	margin: 0;
 }
 
-#fuck{
+#fuck {
 	font-size: 120px;
     font-family:impact;
     color:red;
@@ -52,6 +52,7 @@ audio {
 #fuck a {
 	text-decoration: none;
 	color: red;
+	padding-bottom:20px;
 }
 
 #aboutText {

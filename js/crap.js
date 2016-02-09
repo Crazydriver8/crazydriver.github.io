@@ -26,6 +26,13 @@ var main = function() {
   $('.hella').click(function() {
 		audio.play();
   });
+  
+  /* Start Video */
+  $('.jumbotron').click(function() {
+	  $('.menu').animate({
+		left: "-285px"
+	  }, 200);
+  });
 };
 
 
