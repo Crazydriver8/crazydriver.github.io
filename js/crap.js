@@ -29,9 +29,7 @@ var main = function() {
   
   /* Start Video */
   $('.jumbotron').click(function() {
-	  $('.menu').animate({
-		left: "-285px"
-	  }, 200);
+	  
   });
 };
 
