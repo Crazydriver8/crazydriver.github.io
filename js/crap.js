@@ -28,8 +28,10 @@ var main = function() {
   });
   
   /* Start Video */
-  $('.jumbotron').click(function() {
-	  
+  $('#skeltal').click(function() {
+	  $('body').animate({
+      left: "285px"
+    }, 200);
   });
 };
 
