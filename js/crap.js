@@ -29,9 +29,7 @@ var main = function() {
   
   /* Start Video */
   $('#skeltal').click(function() {
-	  $('body').animate({
-      left: "285px"
-    }, 200);
+		
   });
 };
 

@@ -84,6 +84,101 @@ audio {
     font-size: 48;
 }
 
+#witchMenu {
+	position: absolute;
+	top: 0px;
+	right: 10px;
+}
+
+#witchMenu li {
+	display: inline;
+	margin: 3px;
+}
+
+#witchMenu a {
+	text-decoration: none;
+	font-family: arial;
+	font-size: 12px;
+	color: white;
+}
+
+#witchLogo {
+	width: 640;
+	height: 180;
+	padding-top: 200px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#witchSearchText {
+	display: block;
+	width: 400;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#witchButtons {
+	display: table;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#witchButtons #witchSearch {
+	background: #fafafa;
+	background-image: -webkit-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -moz-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -ms-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -o-linear-gradient(top, #fafafa, #ffffff);
+	background-image: linear-gradient(to bottom, #fafafa, #ffffff);
+	-webkit-border-radius: 7;
+	-moz-border-radius: 7;
+	border-radius: 7px;
+	font-family: Arial;
+	color: #535151;
+	font-size: 12px;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+}
+
+#witchButtons #witchSearch:hover {
+	background: #dbdbdb;
+	background-image: -webkit-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -moz-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -ms-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -o-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: linear-gradient(to bottom, #dbdbdb, #ebebeb);
+	text-decoration: none;
+}
+
+#witchButtons #witchLucky {
+	background: #fafafa;
+	background-image: -webkit-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -moz-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -ms-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -o-linear-gradient(top, #fafafa, #ffffff);
+	background-image: linear-gradient(to bottom, #fafafa, #ffffff);
+	-webkit-border-radius: 7;
+	-moz-border-radius: 7;
+	border-radius: 7px;
+	font-family: Arial;
+	color: #535151;
+	font-size: 12px;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+}
+
+#witchButtons #witchLucky:hover {
+	background: #dbdbdb;
+	background-image: -webkit-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -moz-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -ms-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -o-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: linear-gradient(to bottom, #dbdbdb, #ebebeb);
+	text-decoration: none;
+}
+
 .jumbotron-404 {
 	background-color: black;
 }
