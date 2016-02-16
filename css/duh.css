@@ -33,6 +33,10 @@ audio {
 	font-family: 'Raleway', sans-serif;
 }
 
+#welcome a {
+	text-decoration: none;
+	color: black;
+}
 #skeltal {
 	position: relative;
 	text-align:right;
@@ -107,18 +111,26 @@ audio {
 }
 
 #contactText{
-	position: absolute;
-    font-family: 'Open Sans', sans-serif;
-    color: white;
+	border-style: solid;
+	border-color: white;
+	width: 600px;
 	margin: auto;
-	width: 100px;
 	padding: 10px;
-	text-align: center;
+}
+
+#contactText h2 {
+	color: white;
+	font-family: 'Raleway', sans-serif;
+	font-weight: normal;
+}
+
+#contactText p {
+	font-family: 'Raleway', sans-serif;
 }
 
 #contactText a {
-	color: white;
 	text-decoration: none;
+	color: black;
 }
 
 #witchMenu {
