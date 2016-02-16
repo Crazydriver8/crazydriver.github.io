@@ -14,6 +14,25 @@ audio {
 	position: relative;
 }
 
+#welcome {
+	border-style: solid;
+	border-color: white;
+	width: 600px;
+	margin: auto;
+	padding: 10px;
+}
+
+#welcome #nameSpace {
+	font-size: 48;
+	font-family: 'Raleway', sans-serif, bold;
+	color: white;
+}
+
+#welcome #descriptionSpace {
+	font-size: 30;
+	font-family: 'Raleway', sans-serif;
+}
+
 #skeltal {
 	position: relative;
 	text-align:right;
@@ -56,13 +75,24 @@ audio {
 }
 
 #aboutText {
-	position: absolute;
-	font-family: 'Open Sans', sans-serif;
-    color: white;
-    width: 100vw;
-    left: 150px;
+	border-style: solid;
+	border-color: white;
+	width: 600px;
+	margin: auto;
+	padding: 10px;
     
 }
+
+#aboutText h2 {
+	color: white;
+	font-family: 'Raleway', sans-serif;
+	font-weight: normal;
+}
+
+#aboutText p {
+	font-family: 'Raleway', sans-serif;
+}
+
 #aboutText a {
 	text-decoration: none;
 	color: white;
@@ -76,12 +106,19 @@ audio {
     font-size: 48;
 }
 
-#contactText {
+#contactText{
 	position: absolute;
     font-family: 'Open Sans', sans-serif;
     color: white;
-    left: 200px;
-    font-size: 48;
+	margin: auto;
+	width: 100px;
+	padding: 10px;
+	text-align: center;
+}
+
+#contactText a {
+	color: white;
+	text-decoration: none;
 }
 
 #witchMenu {
@@ -203,7 +240,7 @@ audio {
 /* Basic styling */
 
 .jumbotron {
-  background-image: url('http://i.imgur.com/yrAIgkP.gif'); 
+  background-image: url('../content/treeBack.jpg'); 
   height: 100%;
   background-position: center;
   -webkit-background-size: cover;
@@ -218,13 +255,18 @@ audio {
 }
 
 .menu ul {
+	list-style: none;
+	
+}
+
+.menu #basic {
   border-top: 1px solid #636366;
-  list-style: none;
   margin: 0;
+  text-align: center;
   padding: 0;
 }
 
-.menu li {
+.menu #basic li {
   border-bottom: 1px solid #636366;
   font-family: 'Open Sans', sans-serif;
   line-height: 45px;
@@ -232,6 +274,26 @@ audio {
   padding-left: 20px;
   padding-top: 3px;
   color: white;
+}
+
+.menu #links {
+	position: absolute;
+	bottom: 0px;
+	text-align: center;
+	padding: 3px;
+	bottom: 0px;
+	width: 285px;
+}
+
+.menu #links li {
+	font-family: 'Open Sans', sans-serif;
+	line-height: 45px;
+	bottom: 0px;
+	vertical-align: bottom;
+}
+
+.menu li audio{
+	margin-left: 15px;
 }
 
 .menu #hi {
