@@ -44,7 +44,7 @@ $(document).ready(function() {
 	$("#result").val(modAge + " years old");
   });
   
-  var colors = ['purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'orange', 'cyan', 'pink'];
+  var colors = ['purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'orange', 'cyan', 'pink'];
   $('#witchLucky').click(function() {
 	if (!au.paused) return;
 	au.play();
