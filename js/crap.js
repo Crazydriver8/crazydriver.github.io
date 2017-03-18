@@ -38,6 +38,7 @@ $(document).ready(function() {
 	var destination = document.getElementById("destinationYear").value;
 	var mod = eval(document.getElementById("modYear").value);
 	var normalAge = destination - origin;
+	if (mod == null) mod = 1;
 	var modAge = normalAge / mod;
 	
 	$("#result").val(modAge + " years old");
