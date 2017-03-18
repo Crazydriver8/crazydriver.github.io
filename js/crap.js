@@ -23,6 +23,7 @@ $(document).ready(function() {
   
   /* Set up audio playback */
   var audio = new Audio('../content/doot_doot.mp3');
+  var au = new Audio('../content/magic.mp3');
   $('.hella').click(function() {
 		audio.play();
   });
@@ -33,16 +34,16 @@ $(document).ready(function() {
   });
   
   $('#calcButton').click(function() {
-	alert("WHAT");
 	var origin = document.getElementById("originYear").value;
 	var destination = document.getElementById("destinationYear").value;
-	var mod = document.getElementById("modYear").value;
-	alert("Obtained: " + origin + ", " + destination + ", " + mod);
+	var mod = eval(document.getElementById("modYear").value);
 	var normalAge = destination - origin;
-	alert("In human years: " + normalAge);
 	var modAge = normalAge / mod;
-	alert("Mod Age: " + modAge);
 	
 	$("#result").val(modAge + " years old");
+  });
+  
+  $('#witchLucky').click(function() {
+	au.play();
   });
 });
