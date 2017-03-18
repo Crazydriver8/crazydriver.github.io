@@ -44,7 +44,18 @@ $(document).ready(function() {
 	$("#result").val(modAge + " years old");
   });
   
+  var box = document.getElementById('box'),
+    colors = ['purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'yellow', 'orange', 'cyan', 'pink', 'purple', 'yellow', 'orange', 'cyan', 'pink'];
   $('#witchLucky').click(function() {
 	au.play();
+	(function loop(){
+        var color = colors.shift();
+
+        document.body.style.backgroundColor = color;
+
+        if (colors.length) {
+            setTimeout(loop, 500);
+        }
+    })();
   });
 });

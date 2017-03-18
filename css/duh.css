@@ -281,8 +281,7 @@ audio {
 	color: white;
 	font-family: "Tahoma";
 	font-size: 40px;
-	width: 569;
-	height: 110;
+	text-align: center;
 	padding-top: 150px;
 	display: block;
 	margin-left: auto;
@@ -295,6 +294,9 @@ audio {
 	margin-top: 20px;
 	margin-left: auto;
 	margin-right: auto;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 }
 
 .jumbotron-404 {
