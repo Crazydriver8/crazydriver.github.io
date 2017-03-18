@@ -126,11 +126,27 @@ audio {
 
 #contactText p {
 	font-family: 'Raleway', sans-serif;
+	
 }
 
 #contactText a {
 	text-decoration: none;
 	color: black;
+	background-color: white;
+	border-radius: 2px;
+	width: 30px;
+	padding: 6px;
+}
+
+#contactText .gameOption {
+	border-style: solid;
+	border-radius: 2px;
+	border-color: white;
+	width: 150px;
+	height: 50px;
+	padding: 6px;
+	margin: 10px;
+	text-align: center;
 }
 
 #witchMenu {
@@ -226,6 +242,59 @@ audio {
 	background-image: -o-linear-gradient(top, #dbdbdb, #ebebeb);
 	background-image: linear-gradient(to bottom, #dbdbdb, #ebebeb);
 	text-decoration: none;
+}
+
+#witchButtons #calcButton {
+	background: #fafafa;
+	background-image: -webkit-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -moz-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -ms-linear-gradient(top, #fafafa, #ffffff);
+	background-image: -o-linear-gradient(top, #fafafa, #ffffff);
+	background-image: linear-gradient(to bottom, #fafafa, #ffffff);
+	-webkit-border-radius: 7;
+	-moz-border-radius: 7;
+	border-radius: 7px;
+	font-family: Arial;
+	color: #535151;
+	font-size: 12px;
+	padding: 10px 20px 10px 20px;
+	text-decoration: none;
+}
+
+#witchButtons #calcButton:hover {
+	background: #dbdbdb;
+	background-image: -webkit-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -moz-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -ms-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: -o-linear-gradient(top, #dbdbdb, #ebebeb);
+	background-image: linear-gradient(to bottom, #dbdbdb, #ebebeb);
+	text-decoration: none;
+}
+
+#chronoTitle {
+	color: white;
+	font-family: "Tahoma";
+	text-align: center;
+}
+
+#chronoLogo {
+	color: white;
+	font-family: "Tahoma";
+	font-size: 40px;
+	width: 569;
+	height: 110;
+	padding-top: 150px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.calcInputField {
+	display: block;
+	width: 400;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 .jumbotron-404 {
