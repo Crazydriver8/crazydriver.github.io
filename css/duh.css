@@ -297,6 +297,7 @@ audio {
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
 	border-radius: 5px;
+	text-align: center;
 }
 
 .jumbotron-404 {
