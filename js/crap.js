@@ -34,14 +34,33 @@ $(document).ready(function() {
   });
   
   $('#calcButton').click(function() {
-	var origin = document.getElementById("originYear").value;
-	var destination = document.getElementById("destinationYear").value;
+	var origin = eval(document.getElementById("originYear").value);
+	var destination = eval(document.getElementById("destinationYear").value);
 	var mod = eval(document.getElementById("modYear").value);
+	var age = eval(document.getElementById("age").value);
 	var normalAge = destination - origin;
-	if (mod == null) mod = 1;
-	var modAge = normalAge / mod;
-	
-	$("#result").val(modAge + " years old");
+	if (mod == null) {
+		mod = 1;
+		$("#modYear").val(mod);
+	}
+	if (age == null) {
+		var modAge = normalAge / mod;
+		$("#age").val(modAge);
+	} else if (origin == null) {
+		if (destination == null) {
+			alert("fuck you");
+			return;
+		}
+		var realAge = age * mod;
+		var originTemp = destination - realAge;
+		$("#originYear").val(originTemp);
+	} else if (destination == null) {
+		var realAge = age * mod;
+		var destTemp = origin + realAge;
+		$("#destinationYear").val(destTemp);
+	} else {
+		alert("Please clear a field to calculate");
+	}
   });
   
   var colors = ['purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'orange', 'cyan', 'pink'];
