@@ -142,6 +142,7 @@ audio {
 	border-style: solid;
 	border-radius: 2px;
 	border-color: white;
+	background-color: white;
 	width: 150px;
 	height: 50px;
 	padding: 6px;
