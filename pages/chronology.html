@@ -42,17 +42,18 @@
 
     <!-- Tab content -->
     <div id="shopData" class="tabcontent">
-        <p id="chronoLogo" align="middle" alt="YAY MATH PT 2">Is 'x' shop open?<p>
+        <p id="shopLogo" align="middle" alt="YAY MATH PT 2">Is 'x' shop open?<p>
         <p id="chronoTitle">Store</p>
         <input id="storeName" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Year</p>
-        <input id="storeYear" class="calcInputField" type="text" name="searchTerm"><br>
-        <div id="shopAnswer">
+        <p id="chronoTitle">Date</p>
+        <input id="storeYear" class="calcInputField" type="date" name="searchTerm"><br>
+        <p id="chronoTitle">Time</p>
+        <input id="storeTime" class="calcInputField" type="time" name="searchTerm"><br>
+        <p id="shopAnswer">
 
-        </div>
+        </p>
         <div id="witchButtons">
             <button id="calcShopButton" class="calcButton" type="button" value="Calculate">Calculate</button>
-            <button id="witchLucky" type="button" value="I'm Feeling Magical">I'm Feeling Magical</button>
         </div>
 
 
@@ -61,6 +62,8 @@
                 <th>Shop Name</th>
                 <th>Opened</th>
                 <th>Closed</th>
+                <th>Open Time</th>
+                <th>Close Time</th>
             </tr>
         </table>
     </div>

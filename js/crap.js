@@ -138,11 +138,47 @@ $(document).ready(function() {
 	    $("#destinationYear").val("");
 	    $("#modYear").val("");
 	    $("#result").val("");
-      });
+    });
+
     $('#calcShopButton').click(function () {
-        var name = eval(document.getElementById("storeName").value);
-        var year = eval(document.getElementById("storeYear").value);
-        console.log("Name: " + name + ", Year: " + year);
+        var placeholder = "12-26-2018 ";
+
+        var name = document.getElementById("storeName").value;
+        var inDate = document.getElementById("storeYear").value;
+        var date = new Date(inDate);
+        var inTime = document.getElementById("storeTime").value;
+        var time = new Date(placeholder + inTime);
+        
+        console.log("Name: " + name + ", Date: " + inDate);
+        var exists = false;
+        for (var i = 0; i < shopList.length; i++) {
+            var shop = shopList[i];
+            if (!name.toLowerCase().localeCompare(shop.name.toLowerCase())) {
+                if (new Date(shop.opened) <= date && date <= new Date(shop.closed)) {
+                    if (new Date(placeholder + shop.opentime) <= time && time <= new Date(placeholder + shop.closetime)) {
+                        console.log("time: " + time + "; open: " + new Date(placeholder + shop.opentime) + "; closed: " + new Date(placeholder + shop.closetime));
+                        document.getElementById("shopAnswer").innerHTML = name + " was open on " + inDate + " at " + inTime;
+                    } else {
+                        console.log("time: " + time + "; open: " + new Date(placeholder + shop.opentime) + "; closed: " + new Date(placeholder + shop.closetime));
+                        document.getElementById("shopAnswer").innerHTML = name + " was open on " + inDate + " but was closed at " + inTime;
+                    }
+                } else {
+                    if (new Date(shop.closed) <= date) {
+                        document.getElementById("shopAnswer").innerHTML = name + " was closed permanently by " + inDate;
+                    } else {
+                        document.getElementById("shopAnswer").innerHTML = name + " did not exist on " + inDate;
+                    }
+                }
+
+                exists = true;
+                break;
+            }
+        }
+
+        if (!exists) {
+            console.log(name + " was not found in this database");
+            document.getElementById("shopAnswer").innerHTML = name + " was not found in this database";
+        }
     });
 });
 
@@ -167,41 +203,38 @@ function openTab(evt, tabName) {
     evt.currentTarget.className += " active";
 }
 
-var myList = [
-    { "name": "Sherry's Succulents", "opened": 50, "closed": 2090 },
-    { "name": "Pete's Peppers", "opened": 1920, "closed": "N/A" },
-    { "name": "Adam's Assault Association ", "opened": 1999, "closed": 1999 }
+var shopList = [
+    { "name": "Sherry's Succulents", "opened": "2000-05-05", "closed": "2090-06-30", "opentime": "09:00", "closetime": "17:00" },
+    { "name": "Pete's Peppers", "opened": "1920-02-10", "closed": "N/A", "opentime": "09:00", "closetime": "17:00" },
+    { "name": "Adam's Assault Association ", "opened": "1999-11-12", "closed": "1999-11-13", "opentime": "00:00", "closetime": "24:00" }
 ];
 
-// Builds the HTML Table out of myList.
+// Builds the HTML Table out of shopList.
 function buildHtmlTable() {
-    $.getJSON('../content/shopYears.json', function (data) {
-        alert(data);
-        var columns = addAllColumnHeaders(myList);
+    var columns = addAllColumnHeaders(shopList);
 
-        for (var i = 0; i < myList.length; i++) {
-            var row$ = $('<tr/>');
-            for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-                var cellValue = myList[i][columns[colIndex]];
+    for (var i = 0; i < shopList.length; i++) {
+        var row$ = $('<tr/>');
+        for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+            var cellValue = shopList[i][columns[colIndex]];
 
-                if (cellValue == null) { cellValue = ""; }
+            if (cellValue == null) { cellValue = ""; }
 
-                row$.append($('<td/>').html(cellValue));
-            }
-            $("#shopTable").append(row$);
+            row$.append($('<td/>').html(cellValue));
         }
-    });
+        $("#shopTable").append(row$);
+    }
 }
 
 // Adds a header row to the table and returns the set of columns.
 // Need to do union of keys from all records as some records may not contain
 // all records.
-function addAllColumnHeaders(myList, selector) {
+function addAllColumnHeaders(shopList, selector) {
     var columnSet = [];
     var headerTr$ = $('<tr/>');
 
-    for (var i = 0; i < myList.length; i++) {
-        var rowHash = myList[i];
+    for (var i = 0; i < shopList.length; i++) {
+        var rowHash = shopList[i];
         for (var key in rowHash) {
             if ($.inArray(key, columnSet) == -1) {
                 columnSet.push(key);
