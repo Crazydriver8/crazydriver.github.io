@@ -1,0 +1,18 @@
+{
+  "shops": [
+  {
+    "name": "Sherry's Succulents",
+    "opened": 50,
+    "closed": 2090
+  },
+  {
+    "name": "Pete's Peppers",
+    "opened": 1920,
+    "closed": "N/A"
+  },
+  {
+    "name": "Adam's Assault Association ",
+    "opened": 1999,
+    "closed": 1999
+  }
+]}
