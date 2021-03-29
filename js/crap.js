@@ -48,7 +48,7 @@ $(document).ready(function() {
 		$("#age").val(modAge);
 	} else if (origin == null) {
 		if (destination == null) {
-			alert("fuck you");
+			alert("destination cannot be null");
 			return;
 		}
 		var realAge = age * mod;
@@ -184,7 +184,21 @@ $(document).ready(function() {
     $('#calcArrayButton').click(function () {
         var max = document.getElementById("maxValue").value;
         var min = document.getElementById("minValue").value;
-        document.getElementById("shopAnswer").innerHTML = genShuffledArray(max, min);
+        document.getElementById("arrAnswer").innerHTML = genShuffledArray(max, min);
+    });
+
+    $('#calcDiceButton').click(function () {
+        var d2val = document.getElementById("d2val").value;
+        var d4val = document.getElementById("d4val").value;
+        var d6val = document.getElementById("d6val").value;
+        var d8val = document.getElementById("d8val").value;
+        var d10val = document.getElementById("d10val").value;
+        var d12val = document.getElementById("d12val").value;
+        var d20val = document.getElementById("d20val").value;
+        var resultArray = rollDice(d2val, d4val, d6val, d8val, d10val, d12val, d20val);
+        var total = resultArray.pop();
+        document.getElementById("diceAnswer").innerHTML = total + "\n" + resultArray;
+    });
 });
 
 function openTab(evt, tabName) {
@@ -279,4 +293,64 @@ function shuffleNums(arr) {
         array[randIndex] = tempValue;
     }
     return array;
+}
+
+function rollDice(d2val, d4val, d6val, d8val, d10val, d12val, d20val) {
+    var arr = [];
+    var total = 0;
+    if (d2val) {
+        for (let i = 0; i < d2val; i++) {
+            var diceVal = rollTypeDice(2)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    if (d4val) {
+        for (let i = 0; i < d4val; i++) {
+            var diceVal = rollTypeDice(4)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    if (d6val) {
+        for (let i = 0; i < d6val; i++) {
+            var diceVal = rollTypeDice(6)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    if (d8val) {
+        for (let i = 0; i < d8val; i++) {
+            var diceVal = rollTypeDice(8)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    if (d10val) {
+        for (let i = 0; i < d10val; i++) {
+            var diceVal = rollTypeDice(10)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    if (d12val) {
+        for (let i = 0; i < d12val; i++) {
+            var diceVal = rollTypeDice(12)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    if (d20val) {
+        for (let i = 0; i < d20val; i++) {
+            var diceVal = rollTypeDice(20)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+    }
+    arr.push(total);
+    return arr;
+}
+
+function rollTypeDice(sides) {
+    return Math.floor(Math.random() * sides) + 1;
 }
