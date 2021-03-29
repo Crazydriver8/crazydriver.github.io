@@ -492,6 +492,26 @@ audio {
     margin-right: auto;
 }
 
+.normAnswer {
+    color: white;
+    font-family: "Tahoma";
+    font-size: 30px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.arrAnswer {
+	color: white;
+    font-family: "Tahoma";
+    font-size: 22px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #shopLogo {
     color: white;
     font-family: "Tahoma";

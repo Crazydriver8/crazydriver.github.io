@@ -184,7 +184,7 @@ $(document).ready(function() {
     $('#calcArrayButton').click(function () {
         var max = document.getElementById("maxValue").value;
         var min = document.getElementById("minValue").value;
-        document.getElementById("arrAnswer").innerHTML = genShuffledArray(max, min);
+        document.getElementById("randArrAnswer").innerHTML = genShuffledArray(max, min);
     });
 
     $('#calcDiceButton').click(function () {
@@ -197,7 +197,8 @@ $(document).ready(function() {
         var d20val = document.getElementById("d20val").value;
         var resultArray = rollDice(d2val, d4val, d6val, d8val, d10val, d12val, d20val);
         var total = resultArray.pop();
-        document.getElementById("diceAnswer").innerHTML = total + "\n" + resultArray;
+        document.getElementById("diceTotalAnswer").innerHTML = total;
+        document.getElementById("diceArrAnswer").innerHTML = resultArray;
     });
 });
 
@@ -275,7 +276,7 @@ function genArray(max, min) {
     var results = [];
     for (i = 1; i <= max; i++) {
         if (i < min) continue;
-        results.push(max);
+        results.push(i);
     }
     return results;
 }
