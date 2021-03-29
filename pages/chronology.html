@@ -21,6 +21,7 @@
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button>
         <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button>
+        <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Shop Database</button>
     </div>
 
     <!-- Tab content -->
@@ -68,7 +69,22 @@
         </table>
     </div>
 
+    <div>
+        <p id="randomArrayGenerator" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
+        <p id="chronoTitle">Max</p>
+        <input id="maxValue" class="calcInputField" type="text" name="searchTerm"><br>
+        <p id="chronoTitle">Min</p>
+        <input id="minValue" class="calcInputField" type="date" name="searchTerm"><br>
+        <p id="shopAnswer">
+
+        </p>
+        <div id="witchButtons">
+            <button id="calcArrayButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+        </div>
+    </div>
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="../js/crap.js"></script>
+    <script src="../js/number_utils.js"></script>
   </body>
 </html>

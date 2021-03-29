@@ -180,6 +180,11 @@ $(document).ready(function() {
             document.getElementById("shopAnswer").innerHTML = name + " was not found in this database";
         }
     });
+
+    $('#calcArrayButton').click(function () {
+        var max = document.getElementById("maxValue").value;
+        var min = document.getElementById("minValue").value;
+        document.getElementById("shopAnswer").innerHTML = genShuffledArray(max, min);
 });
 
 function openTab(evt, tabName) {
@@ -245,4 +250,33 @@ function addAllColumnHeaders(shopList, selector) {
     $(selector).append(headerTr$);
 
     return columnSet;
+}
+
+function genShuffledArray(max, min) {
+    let arr = genArray(max, min);
+    return shuffleNums(arr);
+}
+
+function genArray(max, min) {
+    var results = [];
+    for (i = 1; i <= max; i++) {
+        if (i < min) continue;
+        results.push(max);
+    }
+    return results;
+}
+
+function shuffleNums(arr) {
+    var i = arr.length;
+    var tempValue;
+    var randIndex;
+
+    while (0 !== i) {
+        randIndex = Math.floor(Math.random() * i);
+        i -= 1;
+        tempValue = array[i];
+        array[i] = array[randIndex];
+        array[randIndex] = tempValue;
+    }
+    return array;
 }
