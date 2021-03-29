@@ -22,7 +22,7 @@
         <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button>
         <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button>
         <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Random Array</button>
-        <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Dice Roller</button>
+        <button class="tablinks" onclick="openTab(event, 'diceRoller')">Dice Roller</button>
     </div>
 
     <!-- Tab content -->
@@ -70,8 +70,8 @@
         </table>
     </div>
 
-    <div>
-        <p id="randomArrayGenerator" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
+    <div id="randomArrayGenerator" class="tabcontent">
+        <p id="arrLogo" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
         <p id="chronoTitle">Max</p>
         <input id="maxValue" class="calcInputField" type="text" name="searchTerm"><br>
         <p id="chronoTitle">Min</p>
@@ -84,8 +84,8 @@
         </div>
     </div>
 
-    <div>
-        <p id="randomArrayGenerator" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
+    <div id="diceRoller" class="tabcontent">
+        <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Dice Roller<p>
         <p id="chronoTitle">Num. D2</p>
         <input id="d2val" class="calcInputField" type="text" name="searchTerm"><br>
         <p id="chronoTitle">Num. D4</p>

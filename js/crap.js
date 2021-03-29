@@ -280,7 +280,8 @@ function genArray(max, min) {
     return results;
 }
 
-function shuffleNums(arr) {
+function shuffleNums(array) {
+    var arr = array;
     var i = arr.length;
     var tempValue;
     var randIndex;
@@ -288,11 +289,11 @@ function shuffleNums(arr) {
     while (0 !== i) {
         randIndex = Math.floor(Math.random() * i);
         i -= 1;
-        tempValue = array[i];
-        array[i] = array[randIndex];
-        array[randIndex] = tempValue;
+        tempValue = arr[i];
+        arr[i] = arr[randIndex];
+        arr[randIndex] = tempValue;
     }
-    return array;
+    return arr;
 }
 
 function rollDice(d2val, d4val, d6val, d8val, d10val, d12val, d20val) {
