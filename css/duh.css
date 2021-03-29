@@ -131,19 +131,14 @@ audio {
 
 #contactText a {
 	text-decoration: none;
-	color: black;
-	background-color: white;
-	border-radius: 2px;
-	width: 30px;
-	padding: 6px;
+	color: white;
 }
 
 #contactText .gameOption {
 	border-style: solid;
 	border-radius: 2px;
 	border-color: white;
-	background-color: white;
-	width: 150px;
+	width: 93%;
 	height: 50px;
 	padding: 6px;
 	margin: 10px;

@@ -1,121 +1,108 @@
 <html>
-  <head>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400;300' rel='stylesheet' type='text/css'>
-	
-    <link href='../css/duh.css' rel='stylesheet'>
-	<title>Chronology</title>
-  </head>
-  <body onload="buildHtmlTable()" style="overflow: visible">
-    <div id="witchMenu">
-        <ul id="witchItems">
-            <li><a href="witchGoogle.html">Search</a></li>
-            <li><a href="">Chronology</a></li>
-            <li><a href="http://crazydriver8.github.io/pew">Simulacrums</a></li>
-            <li><a href="">Apothecary</a></li>
-            <li><a href="">Cartographer</a></li>
-            <li><a href="http://crazydriver8.github.io/">Osteologist</a></li>
-        </ul>
-    </div>
-
-    <!-- Tab links -->
-    <div class="tab">
-        <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button>
-        <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button>
-        <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Random Array</button>
-        <button class="tablinks" onclick="openTab(event, 'dndDiceRoller')">DnD Dice Roller</button>
-        <button class="tablinks" onclick="openTab(event, 'faceDiceRoller')">Custom Dice Roller</button>
-    </div>
-
-    <!-- Tab content -->
-    <div id="ageCalc" class="tabcontent">
-        <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
-        <p id="chronoTitle">Origin Year</p>
-        <input id="originYear" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Destination Year</p>
-        <input id="destinationYear" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Years Aged Per Earth Year</p>
-        <input id="modYear" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Age</p>
-        <input id="age" class="calcInputField" type="text" name="searchTerm"><br>
-        <div id="witchButtons">
-            <button id="calcButton" class="calcButton" type="button" value="Calculate">Calculate</button>
-            <button id="witchLucky" type="button" value="I'm Feeling Magical">I'm Feeling Magical</button>
+    <head>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400;300' rel='stylesheet' type='text/css'>
+        <link href='../css/duh.css' rel='stylesheet'>
+        <title>Chronology</title>
+    </head>
+    <body onload="buildHtmlTable()" style="overflow: visible">
+        <div id="witchMenu">
+            <ul id="witchItems">
+                <li><a href="witchGoogle.html">Search</a></li>
+                <li><a href="">Chronology</a></li>
+                <li><a href="http://crazydriver8.github.io/pew">Simulacrums</a></li>
+                <li><a href="">Apothecary</a></li>
+                <li><a href="">Cartographer</a></li>
+                <li><a href="http://crazydriver8.github.io/">Osteologist</a></li>
+            </ul>
         </div>
-    </div>
-
-    <!-- Tab content -->
-    <div id="shopData" class="tabcontent">
-        <p id="shopLogo" align="middle" alt="YAY MATH PT 2">Is 'x' shop open?<p>
-        <p id="chronoTitle">Store</p>
-        <input id="storeName" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Date</p>
-        <input id="storeYear" class="calcInputField" type="date" name="searchTerm"><br>
-        <p id="chronoTitle">Time</p>
-        <input id="storeTime" class="calcInputField" type="time" name="searchTerm"><br>
-        <p id="shopAnswer"></p>
-        <div id="witchButtons">
-            <button id="calcShopButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button>
+            <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button>
+            <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Random Array</button>
+            <button class="tablinks" onclick="openTab(event, 'dndDiceRoller')">DnD Dice Roller</button>
+            <button class="tablinks" onclick="openTab(event, 'faceDiceRoller')">Custom Dice Roller</button>
         </div>
-
-
-        <table id="shopTable" border="1">
-            <tr>
-                <th>Shop Name</th>
-                <th>Opened</th>
-                <th>Closed</th>
-                <th>Open Time</th>
-                <th>Close Time</th>
-            </tr>
-        </table>
-    </div>
-
-    <div id="randomArrayGenerator" class="tabcontent">
-        <p id="arrLogo" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
-        <p id="chronoTitle">Max</p>
-        <input id="maxValue" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Min</p>
-        <input id="minValue" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="randArrAnswer" class="arrAnswer"></p>
-        <div id="witchButtons">
-            <button id="calcArrayButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+        <div id="ageCalc" class="tabcontent">
+            <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
+            <p id="chronoTitle">Origin Year</p>
+            <input id="originYear" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Destination Year</p>
+            <input id="destinationYear" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Years Aged Per Earth Year</p>
+            <input id="modYear" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Age</p>
+            <input id="age" class="calcInputField" type="text" name="searchTerm"><br>
+            <div id="witchButtons">
+                <button id="calcButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+                <button id="witchLucky" type="button" value="I'm Feeling Magical">I'm Feeling Magical</button>
+            </div>
         </div>
-    </div>
-
-    <div id="dndDiceRoller" class="tabcontent">
-        <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Standard Dice Roller<p>
-        <p id="chronoTitle">Num. D2</p>
-        <input id="d2val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Num. D4</p>
-        <input id="d4val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Num. D6</p>
-        <input id="d6val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Num. D8</p>
-        <input id="d8val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Num. D10</p>
-        <input id="d10val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Num. D12</p>
-        <input id="d12val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="chronoTitle">Num. D20</p>
-        <input id="d20val" class="calcInputField" type="text" name="searchTerm"><br>
-        <p class="normAnswer">Total:</p>
-        <p id="diceTotalAnswer" class="normAnswer"></p>
-        <p id="diceArrAnswer" class="arrAnswer"></p>
-        <div id="witchButtons">
-            <button id="calcDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+        <div id="shopData" class="tabcontent">
+            <p id="shopLogo" align="middle" alt="YAY MATH PT 2">Is 'x' shop open?<p>
+            <p id="chronoTitle">Store</p>
+            <input id="storeName" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Date</p>
+            <input id="storeYear" class="calcInputField" type="date" name="searchTerm"><br>
+            <p id="chronoTitle">Time</p>
+            <input id="storeTime" class="calcInputField" type="time" name="searchTerm"><br>
+            <p id="shopAnswer"></p>
+            <div id="witchButtons">
+                <button id="calcShopButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+            </div>
+            <table id="shopTable" border="1">
+                <tr>
+                    <th>Shop Name</th>
+                    <th>Opened</th>
+                    <th>Closed</th>
+                    <th>Open Time</th>
+                    <th>Close Time</th>
+                </tr>
+            </table>
         </div>
-    </div>
-
-    <div id="faceDiceRoller" class="tabcontent">
-        <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Custom Dice Roller<p>
-        <p id="chronoTitle">Number of Faces</p>
-        <input id="faceval" class="calcInputField" type="text" name="searchTerm"><br>
-        <p id="diceTotalAnswerCustom" class="normAnswer"></p>
-        <div id="witchButtons">
-            <button id="calcCustomDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+        <div id="randomArrayGenerator" class="tabcontent">
+            <p id="arrLogo" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
+            <p id="chronoTitle">Max</p>
+            <input id="maxValue" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Min</p>
+            <input id="minValue" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="randArrAnswer" class="arrAnswer"></p>
+            <div id="witchButtons">
+                <button id="calcArrayButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+            </div>
         </div>
-    </div>
-
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="../js/crap.js"></script>
-  </body>
+        <div id="dndDiceRoller" class="tabcontent">
+            <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Standard Dice Roller<p>
+            <p id="chronoTitle">Num. D2</p>
+            <input id="d2val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Num. D4</p>
+            <input id="d4val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Num. D6</p>
+            <input id="d6val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Num. D8</p>
+            <input id="d8val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Num. D10</p>
+            <input id="d10val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Num. D12</p>
+            <input id="d12val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="chronoTitle">Num. D20</p>
+            <input id="d20val" class="calcInputField" type="text" name="searchTerm"><br>
+            <p class="normAnswer">Total:</p>
+            <p id="diceTotalAnswer" class="normAnswer"></p>
+            <p id="diceArrAnswer" class="arrAnswer"></p>
+            <div id="witchButtons">
+                <button id="calcDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+            </div>
+        </div>
+        <div id="faceDiceRoller" class="tabcontent">
+            <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Custom Dice Roller<p>
+            <p id="chronoTitle">Number of Faces</p>
+            <input id="faceval" class="calcInputField" type="text" name="searchTerm"><br>
+            <p id="diceTotalAnswerCustom" class="normAnswer"></p>
+            <div id="witchButtons">
+                <button id="calcCustomDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+            </div>
+        </div>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="../js/crap.js"></script>
+    </body>
 </html>
