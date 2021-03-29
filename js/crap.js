@@ -204,6 +204,7 @@ $(document).ready(function() {
     $('#calcCustomDiceButton').click(function () {
         var numfaces = document.getElementById("faceval").value;
         var total = rollTypeDice(numfaces);
+        console.log("TOTAL: " + total);
         document.getElementById("diceTotalAnswerCustom").innerHTML = total;
     });
 });
