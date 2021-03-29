@@ -200,6 +200,12 @@ $(document).ready(function() {
         document.getElementById("diceTotalAnswer").innerHTML = total;
         document.getElementById("diceArrAnswer").innerHTML = resultArray;
     });
+
+    $('#calcCustomDiceButton').click(function () {
+        var numfaces = document.getElementById("faceval").value;
+        var total = rollTypeDice(numfaces);
+        document.getElementById("diceTotalAnswerCustom").innerHTML = total;
+    });
 });
 
 function openTab(evt, tabName) {

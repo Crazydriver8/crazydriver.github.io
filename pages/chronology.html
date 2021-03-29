@@ -22,7 +22,8 @@
         <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button>
         <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button>
         <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Random Array</button>
-        <button class="tablinks" onclick="openTab(event, 'diceRoller')">Dice Roller</button>
+        <button class="tablinks" onclick="openTab(event, 'dndDiceRoller')">DnD Dice Roller</button>
+        <button class="tablinks" onclick="openTab(event, 'faceDiceRoller')">Custom Dice Roller</button>
     </div>
 
     <!-- Tab content -->
@@ -81,7 +82,7 @@
     </div>
 
     <div id="diceRoller" class="tabcontent">
-        <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Dice Roller<p>
+        <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Standard Dice Roller<p>
         <p id="chronoTitle">Num. D2</p>
         <input id="d2val" class="calcInputField" type="text" name="searchTerm"><br>
         <p id="chronoTitle">Num. D4</p>
@@ -101,6 +102,16 @@
         <p id="diceArrAnswer" class="arrAnswer"></p>
         <div id="witchButtons">
             <button id="calcDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+        </div>
+    </div>
+
+    <div id="faceDiceRoller" class="tabcontent">
+        <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Custom Dice Roller<p>
+        <p id="chronoTitle">Number of Faces</p>
+        <input id="faceval" class="calcInputField" type="text" name="searchTerm"><br>
+        <p id="diceTotalAnswerCustom" class="normAnswer"></p>
+        <div id="witchButtons">
+            <button id="calcCustomDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
         </div>
     </div>
 
