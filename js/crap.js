@@ -207,6 +207,52 @@ $(document).ready(function() {
         console.log("TOTAL: " + total);
         document.getElementById("diceTotalAnswerCustom").innerHTML = total;
     });
+	
+	$('#calcTarotSpreadButton').click(function() {
+		var cardsInSpread = eval(document.getElementById("tarotCardNum").value);
+		var spreadCount = eval(document.getElementById("tarotSpreadNum").value);
+		var useStrings = eval(document.getElementById("tarotUseStrings").checked);
+		
+		var tarotStrings = ["The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant",
+							"The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man",
+							"Death", "Temperance", "Devil", "The Tower", "The Star", "The Moon", "The Sun", "Judgement",
+							"The World", 
+							"Ace of Cups", "2 of Cups", "3 of Cups", "4 of Cups", "5 of Cups", "6 of Cups", "7 of Cups",
+							"8 of Cups", "9 of Cups", "10 of Cups", "Page of Cups", "Knight of Cups", "Queen of Cups", "King of Cups",
+							"Ace of Pentacles", "2 of Pentacles", "3 of Pentacles", "4 of Pentacles", "5 of Pentacles", "6 of Pentacles", "7 of Pentacles", "8 of Pentacles", 
+							"9 of Pentacles", "10 of Pentacles", "Page of Pentacles", "Knight of Pentacles", "Queen of Pentacles", "King of Pentacles",
+							"Ace of Swords", "2 of Swords", "3 of Swords", "4 of Swords", "5 of Swords", "6 of Swords", "7 of Swords", "8 of Swords", 
+							"9 of Swords", "10 of Swords", "Page of Swords", "Knight of Swords", "Queen of Swords", "King of Swords",
+							"Ace of Wands", "2 of Wands", "3 of Wands", "4 of Wands", "5 of Wands", "6 of Wands", "7 of Wands", "8 of Wands", 
+							"9 of Wands", "10 of Wands", "Page of Wands", "Knight of Wands", "Queen of Wands", "King of Wands"];
+							
+		if (cardsInSpread > 78) {
+			document.getElementById("tarotAnswer").innerHTML = "Cards in spread cannot exceed 78";
+			return;
+		}
+		
+		var returnString = "";
+		var currentCount = 0;
+		while (currentCount < spreadCount) {
+			var spreadArray = [];
+			while (spreadArray.length < cardsInSpread) {
+				var randTarotNum = rollTypeDice(78);
+				var randTarot = "";
+				if (useStrings) {
+					randTarot = tarotStrings[randTarotNum - 1];
+				} else {
+					randTarot = randTarotNum;
+				}
+				if (!spreadArray.includes(randTarot)) {
+					spreadArray.push(randTarot);
+				}
+			}
+			returnString = returnString + "[" + spreadArray.join(", ") + "] ";
+			currentCount++;
+		}
+		
+		document.getElementById("tarotAnswer").innerHTML = returnString;
+	});
 });
 
 function openTab(evt, tabName) {
@@ -363,3 +409,4 @@ function rollDice(d2val, d4val, d6val, d8val, d10val, d12val, d20val) {
 function rollTypeDice(sides) {
     return Math.floor(Math.random() * sides) + 1;
 }
+

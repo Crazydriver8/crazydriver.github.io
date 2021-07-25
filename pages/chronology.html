@@ -21,6 +21,7 @@
             <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Random Array</button>
             <button class="tablinks" onclick="openTab(event, 'dndDiceRoller')">DnD Dice Roller</button>
             <button class="tablinks" onclick="openTab(event, 'faceDiceRoller')">Custom Dice Roller</button>
+			<button class="tablinks" onclick="openTab(event, 'tarotSpreadGenerator')">Tarot Spread Generator</button>
         </div>
         <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
@@ -101,6 +102,19 @@
             <div id="witchButtons">
                 <button id="calcCustomDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
             </div>
+        </div>
+		<div id="tarotSpreadGenerator" class="tabcontent">
+            <p id="tarotLogo" align="middle" alt="SPOOKY PROPHECY CARDS">Tarot Spread Generator<p>
+            <p id="chronoTitle">Number of Cards in Spread</p>
+            <input id="tarotCardNum" class="calcInputField" type="number" name="searchTerm"><br>
+            <p id="chronoTitle">Number of Spreads</p>
+            <input id="tarotSpreadNum" class="calcInputField" type="number" name="searchTerm"><br>
+			<p id="chronoTitle">Return Strings instead of Numbers?</p>
+            <input id="tarotUseStrings" class="calcInputField" type="checkbox" name="searchTerm"><br>
+            <div id="witchButtons">
+                <button id="calcTarotSpreadButton" class="calcButton" type="button" value="Calculate">Calculate</button>
+            </div>
+			<p id="tarotAnswer" class="normAnswer"></p>
         </div>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="../js/crap.js"></script>
