@@ -196,7 +196,9 @@ $(document).ready(function() {
 		var d10x10val = document.getElementById("d10x10val").value;
         var d12val = document.getElementById("d12val").value;
         var d20val = document.getElementById("d20val").value;
-        var resultArray = rollDice(d2val, d4val, d6val, d8val, d10val, d10x10val, d12val, d20val);
+		var d24val = document.getElementById("d24val").value;
+		var d28val = document.getElementById("d28val").value;
+        var resultArray = rollDice(d2val, d4val, d6val, d8val, d10val, d10x10val, d12val, d20val, d24val, d28val);
         var total = resultArray.pop();
         document.getElementById("diceTotalAnswer").innerHTML = total;
         document.getElementById("diceArrAnswer").innerHTML = resultArray;
@@ -351,7 +353,7 @@ function shuffleNums(array) {
     return arr;
 }
 
-function rollDice(d2val, d4val, d6val, d8val, d10val, d10x10val, d12val, d20val) {
+function rollDice(d2val, d4val, d6val, d8val, d10val, d10x10val, d12val, d20val, d24val, d28val) {
     var arr = [];
     var total = 0;
     if (d2val) {
@@ -410,6 +412,20 @@ function rollDice(d2val, d4val, d6val, d8val, d10val, d10x10val, d12val, d20val)
             total += diceVal;
         }
     }
+	if (d24val) {
+		for (let i = 0; i < d24val; i++) {
+            var diceVal = rollTypeDice(24)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+	}
+	if (d28val) {
+		for (let i = 0; i < d28val; i++) {
+            var diceVal = rollTypeDice(28)
+            arr.push(diceVal);
+            total += diceVal;
+        }
+	}
     arr.push(total);
     return arr;
 }
