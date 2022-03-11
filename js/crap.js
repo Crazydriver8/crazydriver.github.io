@@ -256,6 +256,24 @@ $(document).ready(function() {
 		
 		document.getElementById("tarotAnswer").innerHTML = returnString;
 	});
+	
+	$('#calcColorAttributeButton').click(function() {
+		var colorString = ""
+		var attrString = ""
+		var colorsToUse = eval(document.getElementById("attrGenNum").value)
+		
+		var colors = npcColorGen((colorsToUse > 0) ? colorsToUse : 2)
+		if (!colors || colors.length < 1) return;
+		document.getElementById("attrGenNum").value = colors.length;
+		for (var i = 0; i < colors.length; i++) {
+			colorString += npcColorTranslate(colors[i]) + (i+1 != colors.length ? ", " : "")
+		}
+		
+		var attributes = npcAttrGen(colors)
+		document.getElementById("colorAnswer").innerHTML = colorString;
+		document.getElementById("goodAttrAnswer").innerHTML = attributes[0].join(", ");
+		document.getElementById("badAttrAnswer").innerHTML = attributes[1].join(", ");
+	});
 });
 
 function openTab(evt, tabName) {
@@ -434,3 +452,101 @@ function rollTypeDice(sides) {
     return Math.floor(Math.random() * sides) + 1;
 }
 
+function npcColorGen(numToExtract) {	
+	if (numToExtract > 8) {
+		console.log("Maximum 8 colors")
+		return
+	}
+	
+	var extracted = [];
+	while (extracted.length < numToExtract) {
+		var colorNum = Math.floor(Math.random() * 8);
+		if (!extracted.includes(colorNum)) {
+			extracted.push(colorNum)
+		}
+	}
+	return extracted
+}
+
+function npcColorTranslate(colorNum) {
+	var adjustedColorNum = colorNum
+	var colorArray = [
+		"red", "orange", "yellow", "green", "blue", "indigo", "violet", "pink"
+	]
+	return capitalizeFirstLetter(colorArray[colorNum])
+}
+	
+function npcAttrGen(colorNumArray) {
+	
+	var colorDict = [
+		{ 
+			"color": "red", 
+			"goodTraits": ["ambitious", "courageous", "hospitable", "focused", "determined", "passionate", "generous", "romantic"], 
+			"badTraits": ["possessive", "haughty", "controlling", "bully", "stubborn", "single-minded", "vindictive", "disrespectful"]
+		},
+		{ 
+			"color": "orange", 
+			"goodTraits": ["observant", "cooperative", "industrious", "honorable", "curious", "organized", "studious", "reverent"], 
+			"badTraits": ["perfectionist", "judgmental", "workaholic", "hypocritical", "cowardly", "humorless", "inhibited", "fanatical"]
+		},
+		{ 
+			"color": "yellow", 
+			"goodTraits": ["idealistic", "adventurous", "competitive", "enthusiastic", "carefree", "plucky", "trusting", "playful"], 
+			"badTraits": ["tactless", "volatile", "cocky", "impatient", "gullible", "kleptomania", "impulsive", "reckless"]},
+		{ 
+			"color": "green", 
+			"goodTraits": ["creative", "naturalistic", "resourceful", "patient", "honest", "flexible", "inventive", "nurturing"], 
+			"badTraits": ["jaded", "pessimistic", "stingy", "apathetic", "callous", "untrusting", "resentful", "messy"]
+		},
+		{ 
+			"color": "blue", 
+			"goodTraits": ["appreciative", "affectionate", "empathetic", "loyal", "tolerant", "merciful", "sentimental", "contented"], 
+			"badTraits": ["defensive", "melodramatic", "oversensitive", "needy", "gossipy", "insecure", "depressive", "temperamental"]
+		},
+		{ 
+			"color": "indigo", 
+			"goodTraits": ["analytical", "disciplined", "independent", "protective", "responsible", "pensive", "just", "sophisticated"], 
+			"badTraits": ["hedonistic", "greedy", "antisocial", "materialistic", "uncommunicative", "suspicious", "jealous", "pretentious"]
+		},
+		{ 
+			"color": "violet", 
+			"goodTraits": ["charismatic", "diplomatic", "confident", "discreet", "obedient", "funny", "persuasive", "devoted"], 
+			"badTraits": ["manipulative", "mischievous", "vain", "nosy", "subservient", "cynical", "unethical", "self-destructive"]
+		},
+		{ 
+			"color": "pink", 
+			"goodTraits": ["tenderhearted", "humble", "cautious", "whimsical", "empathetic", "kind", "wholesome", "hopeful"], 
+			"badTraits": ["naïve", "ignorant", "nervous", "fanciful", "irresponsible", "scatterbrained", "dishonest", "indecisive"]
+		}
+	]
+	
+	var goodArray = []
+	var badArray = []
+	
+	for (var i = 0; i < colorNumArray.length; i++){
+		var num = colorNumArray[i]
+		var colorGoodArray = colorDict[num].goodTraits
+		
+		for (var j = 0; j < 2; j++) {
+			var attrNum = Math.floor(Math.random() * 7);
+			var attrStr = colorGoodArray[attrNum]
+			colorGoodArray.splice(attrNum, 1)
+			goodArray.push(attrStr)
+		}
+		
+		var colorBadArray = colorDict[i].badTraits
+        for (var j = 0; j < 2; j++) {
+			var attrNum = Math.floor(Math.random() * 7);
+			var attrStr = colorBadArray[attrNum]
+			colorBadArray.splice(attrNum, 1)
+			badArray.push(attrStr)
+		}
+		
+    }	
+	
+	return [goodArray, badArray]
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
