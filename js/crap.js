@@ -495,8 +495,7 @@ function npcColorTranslate(colorNum) {
 	return capitalizeFirstLetter(colorArray[colorNum])
 }
 	
-function npcAttrGen(colorNumArray) {
-	
+function npcAttrGen(colorNumArray) {	
 	var colorDict = [
 		{ 
 			"color": "red", 
@@ -543,7 +542,7 @@ function npcAttrGen(colorNumArray) {
 	var badArray = []
 	
 	for (var i = 0; i < colorNumArray.length; i++){
-		var num = colorNumArray[i]
+		var num = colorNumArray[i] - 1
 		var colorGoodArray = colorDict[num].goodTraits
 		
 		for (var j = 0; j < 2; j++) {
@@ -553,7 +552,7 @@ function npcAttrGen(colorNumArray) {
 			goodArray.push(attrStr)
 		}
 		
-		var colorBadArray = colorDict[i].badTraits
+		var colorBadArray = colorDict[num].badTraits
         for (var j = 0; j < 2; j++) {
 			var attrNum = Math.floor(Math.random() * 7);
 			var attrStr = colorBadArray[attrNum]
