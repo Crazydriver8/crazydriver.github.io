@@ -529,12 +529,12 @@ function npcAttrGen(colorNumArray) {
 		{ 
 			"color": "violet", 
 			"goodTraits": ["charismatic", "diplomatic", "confident", "discreet", "obedient", "funny", "persuasive", "devoted"], 
-			"badTraits": ["manipulative", "mischievous", "vain", "nosy", "subservient", "cynical", "unethical", "self-destructive"]
+			"badTraits": ["manipulative", "mischievous", "vain", "indecisive", "subservient", "cynical", "unethical", "self-destructive"]
 		},
 		{ 
 			"color": "pink", 
 			"goodTraits": ["tenderhearted", "humble", "cautious", "whimsical", "empathetic", "kind", "wholesome", "hopeful"], 
-			"badTraits": ["naïve", "ignorant", "nervous", "fanciful", "irresponsible", "scatterbrained", "dishonest", "indecisive"]
+			"badTraits": ["naïve", "ignorant", "nervous", "fanciful", "irresponsible", "scatterbrained", "dishonest", "nosy"]
 		}
 	]
 	
