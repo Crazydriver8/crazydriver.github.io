@@ -260,19 +260,38 @@ $(document).ready(function() {
 	$('#calcColorAttributeButton').click(function() {
 		var colorString = ""
 		var attrString = ""
-		var colorsToUse = eval(document.getElementById("attrGenNum").value)
+		var npcsToGenerate = eval(document.getElementById("attrGenNum").value)
+		var color1 = document.getElementById('color1Select').selectedIndex + 1;
+		var color2 = document.getElementById('color2Select').selectedIndex + 1;
 		
-		var colors = npcColorGen((colorsToUse > 0) ? colorsToUse : 2)
+		//var colors = npcColorGen((colorsToUse > 0) ? colorsToUse : 2)
+		var colors = [color1, color2]
 		if (!colors || colors.length < 1) return;
-		document.getElementById("attrGenNum").value = colors.length;
-		for (var i = 0; i < colors.length; i++) {
-			colorString += npcColorTranslate(colors[i]) + (i+1 != colors.length ? ", " : "")
+		//document.getElementById("attrGenNum").value = colors.length;
+		//for (var i = 0; i < colors.length; i++) {
+		//	colorString += npcColorTranslate(colors[i]) + (i+1 != colors.length ? ", " : "")
+		//}
+		var npcList = []
+		while (npcList.length < npcsToGenerate) {
+			var npcAttributes = npcAttrGen(colors)
+			console.log(npcAttributes)
+			if (!npcList.includes(npcAttributes)) {
+				npcList.push(npcAttributes)
+			}
 		}
-		
-		var attributes = npcAttrGen(colors)
-		document.getElementById("colorAnswer").innerHTML = colorString;
-		document.getElementById("goodAttrAnswer").innerHTML = attributes[0].join(", ");
-		document.getElementById("badAttrAnswer").innerHTML = attributes[1].join(", ");
+		var npcDisplay = "";
+		for (var i = 0; i < npcList.length; i++) {
+			var npcAttrs = npcList[i]
+			console.log("APPENDING: " + npcAttrs);
+			const headerNode = document.createElement("p")
+			const textHeaderNode = document.createTextNode("NPC #" + (i + 1))
+			headerNode.appendChild(textHeaderNode);
+			const detailNode = document.createElement("p")
+			const textDetailnode = document.createTextNode("[Good Attributes: " + npcAttrs[0] + "] [Bad Attributes: " + npcAttrs[1] + "]");
+			detailNode.appendChild(textDetailnode);
+			document.getElementById("npcAttrAnswer").appendChild(headerNode)
+			document.getElementById("npcAttrAnswer").appendChild(detailNode)
+		}
 	});
 });
 

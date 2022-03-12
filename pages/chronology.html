@@ -127,17 +127,34 @@
 		<div id="colorAttributeGenerator" class="tabcontent">
             <p align="middle">_</p>
 			<p id="chronoTitle" align="middle" alt="MYERS-BRIGGS OF THE RAINBOW">Color Attribute Generator</p>
-            <p id="chronoTitle">Number of Colors to Use</p>
+			<p id="chronoTitle">Color 1</p>
+            <select id="color1Select" class="witchSelect" align="middle">
+				<option value="red" selected>Red</option>
+				<option value="orange">Orange</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+				<option value="indigo">Indigo</option>
+				<option value="violet">Violet</option>
+				<option value="pink">Pink</option>
+			</select>
+			<p id="chronoTitle">Color 2</p>
+            <select id="color2Select" class="witchSelect" align="middle">
+				<option value="red" selected>Red</option>
+				<option value="orange">Orange</option>
+				<option value="yellow">Yellow</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+				<option value="indigo">Indigo</option>
+				<option value="violet">Violet</option>
+				<option value="pink">Pink</option>
+			</select>
+            <p id="chronoTitle">Number of NPCs to generate</p>
             <input id="attrGenNum" class="calcInputField" type="number" name="searchTerm"><br>
             <div id="witchButtons">
-                <button id="calcColorAttributeButton" class="calcButton" type="button" value="Calculate">Generate Colors & Traits</button>
+                <button id="calcColorAttributeButton" class="calcButton" type="button" value="Calculate">Generate NPC Traits</button>
             </div>
-			<p id="chronoTitle">Colors</p>
-			<p id="colorAnswer" class="normAnswer"></p>
-			<p id="chronoTitle">Good Attributes:</p>
-			<p id="goodAttrAnswer" class="normAnswer"></p>
-			<p id="chronoTitle">Bad Attributes:</p>
-			<p id="badAttrAnswer" class="normAnswer"></p>
+			<div id="npcAttrAnswer" class="normAnswer"></div>
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="../js/crap.js"></script>
