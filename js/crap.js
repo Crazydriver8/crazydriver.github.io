@@ -500,7 +500,7 @@ function npcAttrGen(colorNumArray) {
 		{ 
 			"color": "red", 
 			"goodTraits": ["ambitious", "courageous", "hospitable", "focused", "determined", "passionate", "generous", "romantic"], 
-			"badTraits": ["possessive", "haughty", "controlling", "bully", "stubborn", "single-minded", "vindictive", "disrespectful"]
+			"badTraits": ["possessive", "haughty", "controlling", "short-tempered", "stubborn", "single-minded", "vindictive", "disrespectful"]
 		},
 		{ 
 			"color": "orange", 
