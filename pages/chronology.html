@@ -2,29 +2,26 @@
     <head>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400;300' rel='stylesheet' type='text/css'>
         <link href='../css/duh.css' rel='stylesheet'>
-        <title>Chronology</title>
+        <title>Wisteria Utilities</title>
     </head>
     <body onload="buildHtmlTable()" style="overflow: visible">
         <div id="witchMenu">
             <ul id="witchItems">
                 <li><a href="witchGoogle.html">Search</a></li>
-                <li><a href="">Chronology</a></li>
-                <li><a href="">Simulacra</a></li>
-                <li><a href="">Apothecary</a></li>
-                <li><a href="">Cartographer</a></li>
-                <li><a href="http://crazydriver8.github.io/">Osteologist</a></li>
+                <li><a href="">Wisteria Utilities</a></li>
+                <li><a href="http://crazydriver8.github.io/">Dev Page</a></li>
             </ul>
         </div>
         <div class="tab">
-            <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button>
-            <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button>
+            <!-- <button class="tablinks" onclick="openTab(event, 'ageCalc')">Age Calculator</button> -->
+            <!-- <button class="tablinks" onclick="openTab(event, 'shopData')">Shop Database</button> -->
             <button class="tablinks" onclick="openTab(event, 'randomArrayGenerator')">Random Array</button>
             <button class="tablinks" onclick="openTab(event, 'dndDiceRoller')">DnD Dice Roller</button>
             <button class="tablinks" onclick="openTab(event, 'faceDiceRoller')">Custom Dice Roller</button>
 			<button class="tablinks" onclick="openTab(event, 'tarotSpreadGenerator')">Tarot Spread Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'colorAttributeGenerator')">Color Attribute Generator</button>
         </div>
-        <div id="ageCalc" class="tabcontent">
+        <!-- <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
             <p id="chronoTitle">Origin Year</p>
             <input id="originYear" class="calcInputField" type="text" name="searchTerm"><br>
@@ -38,8 +35,8 @@
                 <button id="calcButton" class="calcButton" type="button" value="Calculate">Calculate</button>
                 <button id="witchLucky" type="button" value="I'm Feeling Magical">I'm Feeling Magical</button>
             </div>
-        </div>
-        <div id="shopData" class="tabcontent">
+        </div> -->
+        <!-- <div id="shopData" class="tabcontent">
             <p id="shopLogo" align="middle" alt="YAY MATH PT 2">Is 'x' shop open?<p>
             <p id="chronoTitle">Store</p>
             <input id="storeName" class="calcInputField" type="text" name="searchTerm"><br>
@@ -60,7 +57,7 @@
                     <th>Close Time</th>
                 </tr>
             </table>
-        </div>
+        </div> -->
         <div id="randomArrayGenerator" class="tabcontent">
             <p id="arrLogo" align="middle" alt="YAY MATH PT 2">Random Array Generator<p>
             <p id="chronoTitle">Max</p>
@@ -105,6 +102,8 @@
             <p id="rollLogo" align="middle" alt="YAY MATH PT 2">Custom Dice Roller<p>
             <p id="chronoTitle">Number of Faces</p>
             <input id="faceval" class="calcInputField" type="text" name="searchTerm"><br>
+			<p id="chronoTitle">Number of Dice</p>
+            <input id="diceval" class="calcInputField" type="text" name="searchTerm"><br>
             <p id="diceTotalAnswerCustom" class="normAnswer"></p>
             <div id="witchButtons">
                 <button id="calcCustomDiceButton" class="calcButton" type="button" value="Calculate">Calculate</button>
@@ -121,7 +120,8 @@
             <div id="witchButtons">
                 <button id="calcTarotSpreadButton" class="calcButton" type="button" value="Calculate">Calculate</button>
             </div>
-			<p id="tarotAnswer" class="normAnswer"></p>
+			<!--<p id="tarotAnswer" class="normAnswer"></p>-->
+			<div id="tarotAnswer" class="normAnswer"></div>
         </div>
 		
 		<div id="colorAttributeGenerator" class="tabcontent">

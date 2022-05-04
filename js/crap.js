@@ -206,9 +206,21 @@ $(document).ready(function() {
 
     $('#calcCustomDiceButton').click(function () {
         var numfaces = document.getElementById("faceval").value;
-        var total = rollTypeDice(numfaces);
+		var numdice = document.getElementById("diceval").value;
+        var total = [];
+		if (!numfaces || numfaces == 0) {
+			document.getElementById("diceTotalAnswerCustom").innerHTML = "Number of faces cannot be empty";
+			return;
+		}
+		if (!numdice || numdice == 0) {
+			document.getElementById("diceTotalAnswerCustom").innerHTML = "Number of dice cannot be empty";
+			return;
+		}
+		for (var i = 0; i < numdice; i++) {
+			total.push(rollTypeDice(numfaces));
+		}
         console.log("TOTAL: " + total);
-        document.getElementById("diceTotalAnswerCustom").innerHTML = total;
+        document.getElementById("diceTotalAnswerCustom").innerHTML = total.join(', ');
     });
 	
 	$('#calcTarotSpreadButton').click(function() {
@@ -236,6 +248,9 @@ $(document).ready(function() {
 		
 		var returnString = "";
 		var currentCount = 0;
+		
+		document.getElementById("tarotAnswer").innerHTML = "";
+		
 		while (currentCount < spreadCount) {
 			var spreadArray = [];
 			while (spreadArray.length < cardsInSpread) {
@@ -250,11 +265,15 @@ $(document).ready(function() {
 					spreadArray.push(randTarot);
 				}
 			}
-			returnString = returnString + "[" + spreadArray.join(", ") + "] ";
+			//returnString = returnString + "[" + spreadArray.join(", ") + "] ";
+			const tarotNode = document.createElement("p");
+			const tarotTextNode = document.createTextNode("[" + spreadArray.join(", ") + "]");
+			tarotNode.appendChild(tarotTextNode);
+			document.getElementById("tarotAnswer").appendChild(tarotNode);
 			currentCount++;
 		}
 		
-		document.getElementById("tarotAnswer").innerHTML = returnString;
+		//document.getElementById("tarotAnswer").innerHTML = returnString;
 	});
 	
 	$('#calcColorAttributeButton').click(function() {
@@ -267,6 +286,7 @@ $(document).ready(function() {
 		//var colors = npcColorGen((colorsToUse > 0) ? colorsToUse : 2)
 		var colors = [color1, color2]
 		if (!colors || colors.length < 1) return;
+		document.getElementById("npcAttrAnswer").innerHTML = "";
 		//document.getElementById("attrGenNum").value = colors.length;
 		//for (var i = 0; i < colors.length; i++) {
 		//	colorString += npcColorTranslate(colors[i]) + (i+1 != colors.length ? ", " : "")
@@ -287,7 +307,7 @@ $(document).ready(function() {
 			const textHeaderNode = document.createTextNode("NPC #" + (i + 1))
 			headerNode.appendChild(textHeaderNode);
 			const detailNode = document.createElement("p")
-			const textDetailnode = document.createTextNode("[Good Attributes: " + npcAttrs[0] + "] [Bad Attributes: " + npcAttrs[1] + "]");
+			const textDetailnode = document.createTextNode("[Good Attributes: " + npcAttrs[0].join(', ') + "] [Bad Attributes: " + npcAttrs[1].join(', ') + "]");
 			detailNode.appendChild(textDetailnode);
 			document.getElementById("npcAttrAnswer").appendChild(headerNode)
 			document.getElementById("npcAttrAnswer").appendChild(detailNode)
