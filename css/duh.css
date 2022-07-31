@@ -330,6 +330,7 @@ audio {
     display: none;
     padding: 6px 12px;
     border-top: none;
+	margin-top: 40px;
 }
 
 .jumbotron-404 {
@@ -520,7 +521,7 @@ audio {
 
 .witchSelect {
 	display: block;
-	margin: 0 auto;
+	margin: 10px auto;
 	font-size: 20;
 	text-align: center;
 	width: 400;
