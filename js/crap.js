@@ -519,42 +519,42 @@ function npcAttrGen(colorNumArray) {
 	var colorDict = [
 		{ 
 			"color": "red", 
-			"goodTraits": ["ambitious", "courageous", "hospitable", "focused", "determined", "passionate", "generous", "romantic"], 
-			"badTraits": ["possessive", "haughty", "controlling", "short-tempered", "stubborn", "single-minded", "vindictive", "disrespectful"]
+			"goodTraits": ["ambitious", "authoritative", "courageous", "nuturing"], 
+			"badTraits": ["stubborn", "controlling", "short-tempered", "prideful"]
 		},
 		{ 
 			"color": "orange", 
-			"goodTraits": ["observant", "cooperative", "industrious", "honorable", "curious", "organized", "studious", "reverent"], 
-			"badTraits": ["perfectionist", "judgmental", "workaholic", "hypocritical", "cowardly", "humorless", "inhibited", "fanatical"]
+			"goodTraits": ["studious", "observant", "honorable", "industrious"], 
+			"badTraits": ["perfectionist", "judgmental", "inhibited", "fanatical"]
 		},
 		{ 
 			"color": "yellow", 
-			"goodTraits": ["idealistic", "adventurous", "competitive", "enthusiastic", "carefree", "plucky", "trusting", "playful"], 
-			"badTraits": ["tactless", "volatile", "cocky", "impatient", "gullible", "kleptomania", "impulsive", "reckless"]},
+			"goodTraits": ["spontaneous", "enthusiastic", "trusting", "carefree"], 
+			"badTraits": ["gullible", "thievish", "impulsive", "arrogant"]},
 		{ 
 			"color": "green", 
-			"goodTraits": ["creative", "naturalistic", "resourceful", "patient", "honest", "flexible", "inventive", "nurturing"], 
-			"badTraits": ["jaded", "pessimistic", "stingy", "apathetic", "callous", "untrusting", "resentful", "messy"]
+			"goodTraits": ["unadorned", "resourceful", "patient", "honest"], 
+			"badTraits": ["defiant", "pessimistic", "callous", "untrusting"]
 		},
 		{ 
 			"color": "blue", 
-			"goodTraits": ["appreciative", "affectionate", "empathetic", "loyal", "tolerant", "merciful", "sentimental", "contented"], 
-			"badTraits": ["defensive", "melodramatic", "oversensitive", "needy", "gossipy", "insecure", "depressive", "temperamental"]
+			"goodTraits": ["protective", "loyal", "tolerant", "sentimental"], 
+			"badTraits": ["suspicious", "melodramatic", "needy", "depressive"]
 		},
 		{ 
 			"color": "indigo", 
-			"goodTraits": ["analytical", "disciplined", "independent", "protective", "responsible", "pensive", "just", "sophisticated"], 
-			"badTraits": ["hedonistic", "greedy", "antisocial", "materialistic", "uncommunicative", "suspicious", "jealous", "pretentious"]
+			"goodTraits": ["resilient", "independent", "discerning", "passionate"], 
+			"badTraits": ["materialistic", "uncommunicative", "possessive", "jealous"]
 		},
 		{ 
 			"color": "violet", 
-			"goodTraits": ["charismatic", "diplomatic", "confident", "discreet", "obedient", "funny", "persuasive", "devoted"], 
-			"badTraits": ["manipulative", "mischievous", "vain", "indecisive", "subservient", "cynical", "unethical", "self-destructive"]
+			"goodTraits": ["charismatic", "diplomatic", "empathetic", "obedient"], 
+			"badTraits": ["manipulative", "mischievous", "suggestible", "apathetic"]
 		},
 		{ 
 			"color": "pink", 
-			"goodTraits": ["tenderhearted", "humble", "cautious", "whimsical", "empathetic", "kind", "wholesome", "hopeful"], 
-			"badTraits": ["naïve", "ignorant", "nervous", "fanciful", "irresponsible", "scatterbrained", "dishonest", "nosy"]
+			"goodTraits": ["cooperative", "idealistic", "reverent", "tenderhearted"], 
+			"badTraits": ["naïve", "dishonest", "scatterbrained", "nervous"]
 		}
 	]
 	
@@ -566,7 +566,7 @@ function npcAttrGen(colorNumArray) {
 		var colorGoodArray = colorDict[num].goodTraits
 		
 		for (var j = 0; j < 2; j++) {
-			var attrNum = Math.floor(Math.random() * 7);
+			var attrNum = Math.floor(Math.random() * 3);
 			var attrStr = colorGoodArray[attrNum]
 			colorGoodArray.splice(attrNum, 1)
 			goodArray.push(attrStr)
@@ -574,7 +574,7 @@ function npcAttrGen(colorNumArray) {
 		
 		var colorBadArray = colorDict[num].badTraits
         for (var j = 0; j < 2; j++) {
-			var attrNum = Math.floor(Math.random() * 7);
+			var attrNum = Math.floor(Math.random() * 3);
 			var attrStr = colorBadArray[attrNum]
 			colorBadArray.splice(attrNum, 1)
 			badArray.push(attrStr)
