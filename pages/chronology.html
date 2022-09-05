@@ -21,6 +21,7 @@
             <button class="tablinks" onclick="openTab(event, 'faceDiceRoller')">Custom Dice Roller</button>
 			<button class="tablinks" onclick="openTab(event, 'tarotSpreadGenerator')">Tarot Spread Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'colorAttributeGenerator')">Color Attribute Generator</button>
+			<button class="tablinks" onclick="openTab(event, 'storyGenerator')">Story Generator</button>
         </div>
         <!-- <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
@@ -157,6 +158,16 @@
             </div>
 			<div id="npcAttrAnswer" class="normAnswer"></div>
         </div>
+		
+		<div id="storyGenerator" class="tabcontent">
+            <p align="middle">_</p>
+			<p id="chronoTitle" align="middle" alt="MYERS-BRIGGS OF THE RAINBOW">Story Generator v1</p>
+            <div id="witchButtons">
+                <button id="calcStoryButton" class="calcButton" type="button" value="Calculate">Generate NPC Traits</button>
+            </div>
+			<div id="storyAnswer" class="normAnswer"></div>
+        </div>
+		
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="../js/crap.js"></script>
     </body>
