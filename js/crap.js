@@ -548,7 +548,7 @@ function npcAttrGen(colorNumArray) {
 		},
 		{ 
 			"color": "indigo", 
-			"goodTraits": ["resilient", "independent", "discerning", "passionate"], 
+			"goodTraits": ["resilient", "independent", "discerning", "discreet"], 
 			"badTraits": ["materialistic", "uncommunicative", "possessive", "jealous"]
 		},
 		{ 
