@@ -318,6 +318,16 @@ $(document).ready(function() {
 		var storyOutput = generateStory();
 		document.getElementById("storyAnswer").innerHTML = storyOutput.join(';<br/>');
 	});
+	
+	$('#calcStatsButton').click(function() {
+		var statsToGen = eval(document.getElementById("statGenNum").value);
+		if (statsToGen < 1) {
+			document.getElementById("statAnswer").innerHTML = "Please enter a value greater than 0";
+			return;
+		}
+		var statOutput = generateStats(statsToGen);
+		document.getElementById("statAnswer").innerHTML = statOutput.join(';<br/><br/>');
+	});
 });
 
 function openTab(evt, tabName) {
@@ -619,8 +629,6 @@ function pickRandom(arrayToPick) {
 }
 
 function formatStories(storyDict) {
-	console.log(storyDict)
-	
 	var formattedStoryDict = [];
 	for (var i = 0; i < storyDict.length; i++) {
 		var currStory = storyDict.at(i);
@@ -628,7 +636,6 @@ function formatStories(storyDict) {
 		const formattedStory = currStory.agentPick + " " + currStory.enginePick + " " + currStory.aspectPick + " " + currStory.anchorPick + " " + currStory.conflictPick;
 		formattedStoryDict.push(formattedStory);
 	}
-	console.log(formattedStoryDict);
 	return formattedStoryDict;
 }
 
@@ -681,3 +688,60 @@ function generateStory(){
 	return formatStories(storyDict)
 }
 
+function getStats() {
+	// choose 1 (one) from each array
+	var retArray = [];
+	const intellectArray = ["[S Tier. It seems to have supernatural intelligence. You would not be surprised if it turned out to be a great wizard in an animal form.]",
+		"[A Tier. You trust the wisdom of this creature more than you trust most people. It knows what to do in most situations without instruction and sometimes despite bad instruction.]",
+		"[B Tier. This is a capable and quick-learning beast. There are few commands that would not be mastered.]",
+		"[C Tier. It is able to master the most rudimentary commands, but any idea too advanced gets lost easily.]",
+		"[D Tier. You do not keep this creature for its powerful mind. Its foolishness often causes both of you a great deal of trouble.]"
+	];
+
+	const strengthArray = ["[S Tier. In battle this beast has no equal. It fights with dauntless fury, striking fear into the hearts of anyone who bears witness to its wrath. On top of strength, it has instinctual skill in combat.]", 
+		"[A Tier. This beast is more powerful than most men will ever be. It is a capable participant in any fight, and you respect it as a combatant more than most allies.]",
+		"[B Tier. Like any creature, this beast can be dangerous if it needs to be. It is outclassed by skilled fighters and great monsters, but it is more than capable of defending itself.]",
+		"[C Tier. While this creature probably can fight, you have never witnessed it. You'd prefer to keep it out of harm's way when possible. It is more of a liability in battle than an asset.]",
+		"[D Tier. This creature is a notably frail coward. Its participation in a fight would probably put you and your allies at greater risk.]"
+	];
+
+	const stealthArray = ["[S Tier. It moves like a shadow on the wind. It seems to avoid detection with supernatural ease at will. After years of working with this beast, even you are unable to detect it when it does not want to be found.]",
+		"[A Tier. All but the keenest eyes and sharpest ears are powerless to detect this creature at work. It can find a way into almost any setting completely unnoticed.]",
+		"[B Tier. It is possible for this creature to be stealthy, but it does not have much training beyond the natural advantages it has as an animal.]",
+		"[C Tier. This creature is far from graceful or subtle. It would take a wild circumstance to make it an asset in any sort of clandestine activity.]",
+		"[D Tier. Perhaps due to its shape, size, or color, this creature sticks out in almost every circumstance. Worse yet, it is easily identified as yours.]"
+	];
+
+	const sensesArray = ["[S Tier: You think this creature may possess some kind of supernatural gift for detection. It seems to anticipate events before they begin to unfold. It is capable of finding valuable information without great effort. To call it impressive would be an understatement.]",
+		"[A Tier. Even for creatures of its type, this beast has impressive senses far beyond those of any humanoid.]",
+		"[B Tier. Like most animals some of its senses are sharper than a human's, but others are considerably weaker. It is good for specific circumstances.]",
+		"[C Tier. It may have one strong sense that allows it to function, but you wouldn't dream of setting it to a task like tracking or watch.]",
+		"[D Tier. Perhaps due to age or injury, this creature lacks key senses. It is only barely functional under the best conditions. You must act as its eyes and ears at all times. It relies on you.]"
+	];
+
+	const loyaltyArray = ["[S Tier. The bond between you and this creature is unbreakable. It would endure any trial to remain at your side. This creature will protect you and the things you care about with dauntless determination.]",
+		"[A Tier. There are few beings living or dead that you would rely on more than this creature. It sees you as family, with an intensity deeper than anything possible in the natural world. Its loyalty is only limited by its capability.]",
+		"[B Tier. You have a close bond with this creature, but it is limited by instinct. There are some circumstances in which animalistic self-preservation outweighs training. Still, in most circumstances it can be relied upon.]",
+		"[C Tier. You have a working relationship with this creature, but there are some areas in which you have distinct trouble. It heeds you because it knows you offer food and stability, but it can be swayed by opportunistic instinct.]",
+		"[D Tier. Calling this creature actively treacherous is probably going too far. Probably. You are still able to work with it, but it has constant behavioral problems, and you get the impression that if you let your guard down, it could turn on you.]"
+	];
+		
+	return ["Intelligence: " + pickRandom(intellectArray), "Strength: " + pickRandom(strengthArray), "Stealth: " + pickRandom(stealthArray), "Senses: " + pickRandom(sensesArray), "Loyalty: " + pickRandom(loyaltyArray)]
+}
+
+function generateStats(numToGenerate) {
+	console.log("GENERATING " + numToGenerate);
+	var generatedStats = [];
+	var remainingToGenerate = numToGenerate;
+	while (remainingToGenerate > 0) {
+		const newStats = getStats();
+		if (!generatedStats.includes(newStats)) {
+			generatedStats.push(newStats);
+			remainingToGenerate = remainingToGenerate - 1;
+			console.log("ADDED")
+		}
+		console.log(generatedStats);
+	}
+	console.log(generatedStats);
+	return generatedStats;
+}

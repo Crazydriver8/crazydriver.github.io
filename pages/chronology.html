@@ -22,6 +22,7 @@
 			<button class="tablinks" onclick="openTab(event, 'tarotSpreadGenerator')">Tarot Spread Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'colorAttributeGenerator')">Color Attribute Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'storyGenerator')">Story Generator</button>
+			<button class="tablinks" onclick="openTab(event, 'statGenerator')">Stat Generator</button>
         </div>
         <!-- <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
@@ -166,6 +167,17 @@
                 <button id="calcStoryButton" class="calcButton" type="button" value="Calculate">Generate NPC Traits</button>
             </div>
 			<div id="storyAnswer" class="normAnswer"></div>
+        </div>
+		
+		<div id="statGenerator" class="tabcontent">
+            <p align="middle">_</p>
+			<p id="chronoTitle" align="middle">Stat Generator v1</p>
+			<p id="chronoTitle">Number of Stat Lists to Generate</p>
+            <input id="statGenNum" class="calcInputField" type="number" name="searchTerm"><br>
+            <div id="witchButtons">
+                <button id="calcStatsButton" class="calcButton" type="button" value="Calculate">Generate Stats</button>
+            </div>
+			<div id="statAnswer" class="normAnswer"></div>
         </div>
 		
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
