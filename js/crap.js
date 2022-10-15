@@ -688,8 +688,28 @@ function generateStory(){
 	return formatStories(storyDict)
 }
 
+function weightedRandom(items, weights) {
+    var i;
+	
+    for (i = 0; i < weights.length; i++) {
+        weights[i] += weights[i - 1] || 0;
+	}
+    
+    var random = Math.random() * weights[weights.length - 1];
+    
+    for (i = 0; i < weights.length; i++) {
+        if (weights[i] > random) {
+            break;
+		}
+	}
+    
+    return items[i];
+}
+
 function getStats() {
 	// choose 1 (one) from each array
+	const weightArray = [5,25,25,25,20]
+	
 	var retArray = [];
 	const intellectArray = ["[S Tier. It seems to have supernatural intelligence. You would not be surprised if it turned out to be a great wizard in an animal form.]",
 		"[A Tier. You trust the wisdom of this creature more than you trust most people. It knows what to do in most situations without instruction and sometimes despite bad instruction.]",
@@ -726,7 +746,7 @@ function getStats() {
 		"[D Tier. Calling this creature actively treacherous is probably going too far. Probably. You are still able to work with it, but it has constant behavioral problems, and you get the impression that if you let your guard down, it could turn on you.]"
 	];
 		
-	return ["Intelligence: " + pickRandom(intellectArray), "Strength: " + pickRandom(strengthArray), "Stealth: " + pickRandom(stealthArray), "Senses: " + pickRandom(sensesArray), "Loyalty: " + pickRandom(loyaltyArray)]
+	return ["Intelligence: " + weightedRandom(intellectArray, weightArray), "Strength: " + weightedRandom(strengthArray, weightArray), "Stealth: " + weightedRandom(stealthArray, weightArray), "Senses: " + weightedRandom(sensesArray, weightArray), "Loyalty: " + weightedRandom(loyaltyArray, weightArray)]
 }
 
 function generateStats(numToGenerate) {
