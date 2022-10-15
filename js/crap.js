@@ -66,8 +66,6 @@ $(document).ready(function() {
     var colors = ['purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'black', 'orange', 'cyan', 'pink', 'purple', 'orange', 'cyan', 'pink'];
 
     $('#witchLucky').click(function () {
-        console.log("Lucky Pressed!");
-
 	    if (!au.paused) return;
 	    au.play();
 	    var oldVal = document.getElementById("age").value;
@@ -75,7 +73,6 @@ $(document).ready(function() {
 	    var woop = 0;
 	    var i = 0;
         (function loop() {
-            console.log("Loop: " + i);
 		    if (i > colors.length) {
 			    $("#originYear").val("");
 			    $("#destinationYear").val("");
@@ -85,7 +82,6 @@ $(document).ready(function() {
 		    }
 		
             var color = colors[i];
-            console.log("Color is : " + color);
 		
             document.body.style.backgroundColor = color;
             if (colors.length) {
@@ -148,18 +144,14 @@ $(document).ready(function() {
         var date = new Date(inDate);
         var inTime = document.getElementById("storeTime").value;
         var time = new Date(placeholder + inTime);
-        
-        console.log("Name: " + name + ", Date: " + inDate);
         var exists = false;
         for (var i = 0; i < shopList.length; i++) {
             var shop = shopList[i];
             if (!name.toLowerCase().localeCompare(shop.name.toLowerCase())) {
                 if (new Date(shop.opened) <= date && date <= new Date(shop.closed)) {
                     if (new Date(placeholder + shop.opentime) <= time && time <= new Date(placeholder + shop.closetime)) {
-                        console.log("time: " + time + "; open: " + new Date(placeholder + shop.opentime) + "; closed: " + new Date(placeholder + shop.closetime));
                         document.getElementById("shopAnswer").innerHTML = name + " was open on " + inDate + " at " + inTime;
                     } else {
-                        console.log("time: " + time + "; open: " + new Date(placeholder + shop.opentime) + "; closed: " + new Date(placeholder + shop.closetime));
                         document.getElementById("shopAnswer").innerHTML = name + " was open on " + inDate + " but was closed at " + inTime;
                     }
                 } else {
@@ -176,7 +168,6 @@ $(document).ready(function() {
         }
 
         if (!exists) {
-            console.log(name + " was not found in this database");
             document.getElementById("shopAnswer").innerHTML = name + " was not found in this database";
         }
     });
@@ -219,7 +210,6 @@ $(document).ready(function() {
 		for (var i = 0; i < numdice; i++) {
 			total.push(rollTypeDice(numfaces));
 		}
-        console.log("TOTAL: " + total);
         document.getElementById("diceTotalAnswerCustom").innerHTML = total.join(', ');
     });
 	
@@ -265,15 +255,12 @@ $(document).ready(function() {
 					spreadArray.push(randTarot);
 				}
 			}
-			//returnString = returnString + "[" + spreadArray.join(", ") + "] ";
 			const tarotNode = document.createElement("p");
 			const tarotTextNode = document.createTextNode("[" + spreadArray.join(", ") + "]");
 			tarotNode.appendChild(tarotTextNode);
 			document.getElementById("tarotAnswer").appendChild(tarotNode);
 			currentCount++;
 		}
-		
-		//document.getElementById("tarotAnswer").innerHTML = returnString;
 	});
 	
 	$('#calcColorAttributeButton').click(function() {
@@ -283,18 +270,12 @@ $(document).ready(function() {
 		var color1 = document.getElementById('color1Select').selectedIndex + 1;
 		var color2 = document.getElementById('color2Select').selectedIndex + 1;
 		
-		//var colors = npcColorGen((colorsToUse > 0) ? colorsToUse : 2)
 		var colors = [color1, color2]
 		if (!colors || colors.length < 1) return;
 		document.getElementById("npcAttrAnswer").innerHTML = "";
-		//document.getElementById("attrGenNum").value = colors.length;
-		//for (var i = 0; i < colors.length; i++) {
-		//	colorString += npcColorTranslate(colors[i]) + (i+1 != colors.length ? ", " : "")
-		//}
 		var npcList = []
 		while (npcList.length < npcsToGenerate) {
 			var npcAttributes = npcAttrGen(colors)
-			console.log(npcAttributes)
 			if (!npcList.includes(npcAttributes)) {
 				npcList.push(npcAttributes)
 			}
@@ -302,7 +283,6 @@ $(document).ready(function() {
 		var npcDisplay = "";
 		for (var i = 0; i < npcList.length; i++) {
 			var npcAttrs = npcList[i]
-			console.log("APPENDING: " + npcAttrs);
 			const headerNode = document.createElement("p")
 			const textHeaderNode = document.createTextNode("NPC #" + (i + 1))
 			headerNode.appendChild(textHeaderNode);
@@ -508,7 +488,6 @@ function rollTypeDice(sides) {
 
 function npcColorGen(numToExtract) {	
 	if (numToExtract > 8) {
-		console.log("Maximum 8 colors")
 		return
 	}
 	
@@ -632,7 +611,6 @@ function formatStories(storyDict) {
 	var formattedStoryDict = [];
 	for (var i = 0; i < storyDict.length; i++) {
 		var currStory = storyDict.at(i);
-		console.log(currStory)
 		const formattedStory = currStory.agentPick + " " + currStory.enginePick + " " + currStory.aspectPick + " " + currStory.anchorPick + " " + currStory.conflictPick;
 		formattedStoryDict.push(formattedStory);
 	}
@@ -750,7 +728,6 @@ function getStats() {
 }
 
 function generateStats(numToGenerate) {
-	console.log("GENERATING " + numToGenerate);
 	var generatedStats = [];
 	var remainingToGenerate = numToGenerate;
 	while (remainingToGenerate > 0) {
@@ -758,10 +735,7 @@ function generateStats(numToGenerate) {
 		if (!generatedStats.includes(newStats)) {
 			generatedStats.push(newStats);
 			remainingToGenerate = remainingToGenerate - 1;
-			console.log("ADDED")
 		}
-		console.log(generatedStats);
 	}
-	console.log(generatedStats);
 	return generatedStats;
 }
