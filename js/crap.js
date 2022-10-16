@@ -684,58 +684,407 @@ function weightedRandom(items, weights) {
     return items[i];
 }
 
-function getStats() {
+const intellectArray = ["[S Tier. It seems to have supernatural intelligence. You would not be surprised if it turned out to be a great wizard in an animal form.]",
+	"[A Tier. You trust the wisdom of this creature more than you trust most people. It knows what to do in most situations without instruction and sometimes despite bad instruction.]",
+	"[B Tier. This is a capable and quick-learning beast. There are few commands that would not be mastered.]",
+	"[C Tier. It is able to master the most rudimentary commands, but any idea too advanced gets lost easily.]",
+	"[D Tier. You do not keep this creature for its powerful mind. Its foolishness often causes both of you a great deal of trouble.]"
+];
+
+const strengthArray = ["[S Tier. In battle this beast has no equal. It fights with dauntless fury, striking fear into the hearts of anyone who bears witness to its wrath. On top of strength, it has instinctual skill in combat.]", 
+	"[A Tier. This beast is more powerful than most men will ever be. It is a capable participant in any fight, and you respect it as a combatant more than most allies.]",
+	"[B Tier. Like any creature, this beast can be dangerous if it needs to be. It is outclassed by skilled fighters and great monsters, but it is more than capable of defending itself.]",
+	"[C Tier. While this creature probably can fight, you have never witnessed it. You'd prefer to keep it out of harm's way when possible. It is more of a liability in battle than an asset.]",
+	"[D Tier. This creature is a notably frail coward. Its participation in a fight would probably put you and your allies at greater risk.]"
+];
+
+const stealthArray = ["[S Tier. It moves like a shadow on the wind. It seems to avoid detection with supernatural ease at will. After years of working with this beast, even you are unable to detect it when it does not want to be found.]",
+	"[A Tier. All but the keenest eyes and sharpest ears are powerless to detect this creature at work. It can find a way into almost any setting completely unnoticed.]",
+	"[B Tier. It is possible for this creature to be stealthy, but it does not have much training beyond the natural advantages it has as an animal.]",
+	"[C Tier. This creature is far from graceful or subtle. It would take a wild circumstance to make it an asset in any sort of clandestine activity.]",
+	"[D Tier. Perhaps due to its shape, size, or color, this creature sticks out in almost every circumstance. Worse yet, it is easily identified as yours.]"
+];
+
+const sensesArray = ["[S Tier: You think this creature may possess some kind of supernatural gift for detection. It seems to anticipate events before they begin to unfold. It is capable of finding valuable information without great effort. To call it impressive would be an understatement.]",
+	"[A Tier. Even for creatures of its type, this beast has impressive senses far beyond those of any humanoid.]",
+	"[B Tier. Like most animals some of its senses are sharper than a human's, but others are considerably weaker. It is good for specific circumstances.]",
+	"[C Tier. It may have one strong sense that allows it to function, but you wouldn't dream of setting it to a task like tracking or watch.]",
+	"[D Tier. Perhaps due to age or injury, this creature lacks key senses. It is only barely functional under the best conditions. You must act as its eyes and ears at all times. It relies on you.]"
+];
+
+const loyaltyArray = ["[S Tier. The bond between you and this creature is unbreakable. It would endure any trial to remain at your side. This creature will protect you and the things you care about with dauntless determination.]",
+	"[A Tier. There are few beings living or dead that you would rely on more than this creature. It sees you as family, with an intensity deeper than anything possible in the natural world. Its loyalty is only limited by its capability.]",
+	"[B Tier. You have a close bond with this creature, but it is limited by instinct. There are some circumstances in which animalistic self-preservation outweighs training. Still, in most circumstances it can be relied upon.]",
+	"[C Tier. You have a working relationship with this creature, but there are some areas in which you have distinct trouble. It heeds you because it knows you offer food and stability, but it can be swayed by opportunistic instinct.]",
+	"[D Tier. Calling this creature actively treacherous is probably going too far. Probably. You are still able to work with it, but it has constant behavioral problems, and you get the impression that if you let your guard down, it could turn on you.]"
+];
+
+function checkIfIncludes(testArray, testVal) {
+	for (let i of testArray) {
+		if (i === testVal) return true;
+	}
+	return false;
+}
+
+function getStats(numToGenerate) {
 	// choose 1 (one) from each array
 	const weightArray = [5,25,25,25,20]
 	
-	var retArray = [];
-	const intellectArray = ["[S Tier. It seems to have supernatural intelligence. You would not be surprised if it turned out to be a great wizard in an animal form.]",
-		"[A Tier. You trust the wisdom of this creature more than you trust most people. It knows what to do in most situations without instruction and sometimes despite bad instruction.]",
-		"[B Tier. This is a capable and quick-learning beast. There are few commands that would not be mastered.]",
-		"[C Tier. It is able to master the most rudimentary commands, but any idea too advanced gets lost easily.]",
-		"[D Tier. You do not keep this creature for its powerful mind. Its foolishness often causes both of you a great deal of trouble.]"
-	];
-
-	const strengthArray = ["[S Tier. In battle this beast has no equal. It fights with dauntless fury, striking fear into the hearts of anyone who bears witness to its wrath. On top of strength, it has instinctual skill in combat.]", 
-		"[A Tier. This beast is more powerful than most men will ever be. It is a capable participant in any fight, and you respect it as a combatant more than most allies.]",
-		"[B Tier. Like any creature, this beast can be dangerous if it needs to be. It is outclassed by skilled fighters and great monsters, but it is more than capable of defending itself.]",
-		"[C Tier. While this creature probably can fight, you have never witnessed it. You'd prefer to keep it out of harm's way when possible. It is more of a liability in battle than an asset.]",
-		"[D Tier. This creature is a notably frail coward. Its participation in a fight would probably put you and your allies at greater risk.]"
-	];
-
-	const stealthArray = ["[S Tier. It moves like a shadow on the wind. It seems to avoid detection with supernatural ease at will. After years of working with this beast, even you are unable to detect it when it does not want to be found.]",
-		"[A Tier. All but the keenest eyes and sharpest ears are powerless to detect this creature at work. It can find a way into almost any setting completely unnoticed.]",
-		"[B Tier. It is possible for this creature to be stealthy, but it does not have much training beyond the natural advantages it has as an animal.]",
-		"[C Tier. This creature is far from graceful or subtle. It would take a wild circumstance to make it an asset in any sort of clandestine activity.]",
-		"[D Tier. Perhaps due to its shape, size, or color, this creature sticks out in almost every circumstance. Worse yet, it is easily identified as yours.]"
-	];
-
-	const sensesArray = ["[S Tier: You think this creature may possess some kind of supernatural gift for detection. It seems to anticipate events before they begin to unfold. It is capable of finding valuable information without great effort. To call it impressive would be an understatement.]",
-		"[A Tier. Even for creatures of its type, this beast has impressive senses far beyond those of any humanoid.]",
-		"[B Tier. Like most animals some of its senses are sharper than a human's, but others are considerably weaker. It is good for specific circumstances.]",
-		"[C Tier. It may have one strong sense that allows it to function, but you wouldn't dream of setting it to a task like tracking or watch.]",
-		"[D Tier. Perhaps due to age or injury, this creature lacks key senses. It is only barely functional under the best conditions. You must act as its eyes and ears at all times. It relies on you.]"
-	];
-
-	const loyaltyArray = ["[S Tier. The bond between you and this creature is unbreakable. It would endure any trial to remain at your side. This creature will protect you and the things you care about with dauntless determination.]",
-		"[A Tier. There are few beings living or dead that you would rely on more than this creature. It sees you as family, with an intensity deeper than anything possible in the natural world. Its loyalty is only limited by its capability.]",
-		"[B Tier. You have a close bond with this creature, but it is limited by instinct. There are some circumstances in which animalistic self-preservation outweighs training. Still, in most circumstances it can be relied upon.]",
-		"[C Tier. You have a working relationship with this creature, but there are some areas in which you have distinct trouble. It heeds you because it knows you offer food and stability, but it can be swayed by opportunistic instinct.]",
-		"[D Tier. Calling this creature actively treacherous is probably going too far. Probably. You are still able to work with it, but it has constant behavioral problems, and you get the impression that if you let your guard down, it could turn on you.]"
-	];
+	//var retArray = Array.from(Array(numToGenerate), () => new Array(5));
+	//statArray = Array(numToGenerate).fill("").map(() => Array(5));
+	var retArray = new Array(numToGenerate).fill(0).map(() => new Array(5).fill(0));
+	
+	console.log(retArray);
+	
+	var numS = numToGenerate * 0.05;
+	var numGen = numToGenerate * 0.25;
+	var numD = numToGenerate * 0.2
+	
+	var usedIntPos = [];
+	var usedStrPos = [];
+	var usedStlPos = [];
+	var usedSenPos = [];
+	var usedLoyPos = [];
+	
+	for (var s = 0; s < numS; s++) {
+		var intPos = -1;
+		var strPos = -1;
+		var stlPos = -1;
+		var senPos = -1;
+		var loyPos = -1;
 		
-	return ["Intelligence: " + weightedRandom(intellectArray, weightArray), "Strength: " + weightedRandom(strengthArray, weightArray), "Stealth: " + weightedRandom(stealthArray, weightArray), "Senses: " + weightedRandom(sensesArray, weightArray), "Loyalty: " + weightedRandom(loyaltyArray, weightArray)]
+		while (intPos < 0) {
+			var tempIntPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedIntPos, tempIntPos)) {
+				console.log("SKIP");
+			} else {
+				usedIntPos.push(tempIntPos);
+				intPos = tempIntPos;
+			}
+		}
+		
+		while (strPos < 0) {
+			var tempStrPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStrPos, tempStrPos)) {
+				console.log("SKIP");
+			} else {
+				usedStrPos.push(tempStrPos);
+				strPos = tempStrPos;
+			}
+		}
+		
+		while (stlPos < 0) {
+			var tempStlPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStlPos, tempStlPos)) {
+				console.log("SKIP");
+			} else {
+				usedStlPos.push(tempStlPos);
+				stlPos = tempStlPos;
+			}
+		}
+		
+		while (senPos < 0) {
+			var tempSenPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedSenPos, tempSenPos)) {
+				console.log("SKIP");
+			} else {
+				usedSenPos.push(tempSenPos);
+				senPos = tempSenPos;
+			}
+		}
+		
+		while (loyPos < 0) {
+			var tempLoyPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedLoyPos, tempLoyPos)) {
+				console.log("SKIP");
+			} else {
+				usedLoyPos.push(tempLoyPos);
+				loyPos = tempLoyPos;
+			}
+		}
+		
+		retArray[intPos][0] = "Intelligence: " + intellectArray[0]
+		retArray[strPos][1] = "Strength: " + strengthArray[0]
+		retArray[stlPos][2] = "Stealth: " + stealthArray[0]
+		retArray[senPos][3] = "Sense: " + sensesArray[0]
+		retArray[loyPos][4] = "Loyalty: " + loyaltyArray[0]
+	}
+	
+	for (a = 0; a < numGen; a++) {
+		var intPos = -1;
+		var strPos = -1;
+		var stlPos = -1;
+		var senPos = -1;
+		var loyPos = -1;
+		
+		while (intPos < 0) {
+			var tempIntPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedIntPos, tempIntPos)) {
+				console.log("SKIP");
+			} else {
+				usedIntPos.push(tempIntPos);
+				intPos = tempIntPos;
+			}
+		}
+		
+		while (strPos < 0) {
+			var tempStrPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStrPos, tempStrPos)) {
+				console.log("SKIP");
+			} else {
+				usedStrPos.push(tempStrPos);
+				strPos = tempStrPos;
+			}
+		}
+		
+		while (stlPos < 0) {
+			var tempStlPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStlPos, tempStlPos)) {
+				console.log("SKIP");
+			} else {
+				usedStlPos.push(tempStlPos);
+				stlPos = tempStlPos;
+			}
+		}
+		
+		while (senPos < 0) {
+			var tempSenPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedSenPos, tempSenPos)) {
+				console.log("SKIP");
+			} else {
+				usedSenPos.push(tempSenPos);
+				senPos = tempSenPos;
+			}
+		}
+		
+		while (loyPos < 0) {
+			var tempLoyPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedLoyPos, tempLoyPos)) {
+				console.log("SKIP");
+			} else {
+				usedLoyPos.push(tempLoyPos);
+				loyPos = tempLoyPos;
+			}
+		}
+		
+		retArray[intPos][0] = "Intelligence: " + intellectArray[1]
+		retArray[strPos][1] = "Strength: " + strengthArray[1]
+		retArray[stlPos][2] = "Stealth: " + stealthArray[1]
+		retArray[senPos][3] = "Sense: " + sensesArray[1]
+		retArray[loyPos][4] = "Loyalty: " + loyaltyArray[1]
+	}
+	
+	for (b = 0; b < numGen; b++) {
+		var intPos = -1;
+		var strPos = -1;
+		var stlPos = -1;
+		var senPos = -1;
+		var loyPos = -1;
+		
+		while (intPos < 0) {
+			var tempIntPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedIntPos, tempIntPos)) {
+				console.log("SKIP");
+			} else {
+				usedIntPos.push(tempIntPos);
+				intPos = tempIntPos;
+			}
+		}
+		
+		while (strPos < 0) {
+			var tempStrPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStrPos, tempStrPos)) {
+				console.log("SKIP");
+			} else {
+				usedStrPos.push(tempStrPos);
+				strPos = tempStrPos;
+			}
+		}
+		
+		while (stlPos < 0) {
+			var tempStlPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStlPos, tempStlPos)) {
+				console.log("SKIP");
+			} else {
+				usedStlPos.push(tempStlPos);
+				stlPos = tempStlPos;
+			}
+		}
+		
+		while (senPos < 0) {
+			var tempSenPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedSenPos, tempSenPos)) {
+				console.log("SKIP");
+			} else {
+				usedSenPos.push(tempSenPos);
+				senPos = tempSenPos;
+			}
+		}
+		
+		while (loyPos < 0) {
+			var tempLoyPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedLoyPos, tempLoyPos)) {
+				console.log("SKIP");
+			} else {
+				usedLoyPos.push(tempLoyPos);
+				loyPos = tempLoyPos;
+			}
+		}
+		
+		retArray[intPos][0] = "Intelligence: " + intellectArray[2]
+		retArray[strPos][1] = "Strength: " + strengthArray[2]
+		retArray[stlPos][2] = "Stealth: " + stealthArray[2]
+		retArray[senPos][3] = "Sense: " + sensesArray[2]
+		retArray[loyPos][4] = "Loyalty: " + loyaltyArray[2]
+	}
+	
+	for (c = 0; c < numGen; c++) {
+		var intPos = -1;
+		var strPos = -1;
+		var stlPos = -1;
+		var senPos = -1;
+		var loyPos = -1;
+		
+		while (intPos < 0) {
+			var tempIntPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedIntPos, tempIntPos)) {
+				console.log("SKIP");
+			} else {
+				usedIntPos.push(tempIntPos);
+				intPos = tempIntPos;
+			}
+		}
+		
+		while (strPos < 0) {
+			var tempStrPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStrPos, tempStrPos)) {
+				console.log("SKIP");
+			} else {
+				usedStrPos.push(tempStrPos);
+				strPos = tempStrPos;
+			}
+		}
+		
+		while (stlPos < 0) {
+			var tempStlPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStlPos, tempStlPos)) {
+				console.log("SKIP");
+			} else {
+				usedStlPos.push(tempStlPos);
+				stlPos = tempStlPos;
+			}
+		}
+		
+		while (senPos < 0) {
+			var tempSenPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedSenPos, tempSenPos)) {
+				console.log("SKIP");
+			} else {
+				usedSenPos.push(tempSenPos);
+				senPos = tempSenPos;
+			}
+		}
+		
+		while (loyPos < 0) {
+			var tempLoyPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedLoyPos, tempLoyPos)) {
+				console.log("SKIP");
+			} else {
+				usedLoyPos.push(tempLoyPos);
+				loyPos = tempLoyPos;
+			}
+		}
+		
+		retArray[intPos][0] = "Intelligence: " + intellectArray[3]
+		retArray[strPos][1] = "Strength: " + strengthArray[3]
+		retArray[stlPos][2] = "Stealth: " + stealthArray[3]
+		retArray[senPos][3] = "Sense: " + sensesArray[3]
+		retArray[loyPos][4] = "Loyalty: " + loyaltyArray[3]
+	}
+	
+	for (d = 0; d < numD; d++) {
+		var intPos = -1;
+		var strPos = -1;
+		var stlPos = -1;
+		var senPos = -1;
+		var loyPos = -1;
+		
+		while (intPos < 0) {
+			var tempIntPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedIntPos, tempIntPos)) {
+				console.log("SKIP");
+			} else {
+				usedIntPos.push(tempIntPos);
+				intPos = tempIntPos;
+			}
+		}
+		
+		while (strPos < 0) {
+			var tempStrPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStrPos, tempStrPos)) {
+				console.log("SKIP");
+			} else {
+				usedStrPos.push(tempStrPos);
+				strPos = tempStrPos;
+			}
+		}
+		
+		while (stlPos < 0) {
+			var tempStlPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedStlPos, tempStlPos)) {
+				console.log("SKIP");
+			} else {
+				usedStlPos.push(tempStlPos);
+				stlPos = tempStlPos;
+			}
+		}
+		
+		while (senPos < 0) {
+			var tempSenPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedSenPos, tempSenPos)) {
+				console.log("SKIP");
+			} else {
+				usedSenPos.push(tempSenPos);
+				senPos = tempSenPos;
+			}
+		}
+		
+		while (loyPos < 0) {
+			var tempLoyPos = rollTypeDice(numToGenerate) - 1;
+			if (checkIfIncludes(usedLoyPos, tempLoyPos)) {
+				console.log("SKIP");
+			} else {
+				usedLoyPos.push(tempLoyPos);
+				loyPos = tempLoyPos;
+			}
+		}
+		
+		retArray[intPos][0] = "Intelligence: " + intellectArray[4]
+		retArray[strPos][1] = "Strength: " + strengthArray[4]
+		retArray[stlPos][2] = "Stealth: " + stealthArray[4]
+		retArray[senPos][3] = "Sense: " + sensesArray[4]
+		retArray[loyPos][4] = "Loyalty: " + loyaltyArray[4]
+	}
+	
+	console.log(retArray);
+	
+	return retArray;
+		
+	//return ["Intelligence: " + weightedRandom(intellectArray, weightArray), "Strength: " + weightedRandom(strengthArray, weightArray), "Stealth: " + weightedRandom(stealthArray, weightArray), "Senses: " + weightedRandom(sensesArray, weightArray), "Loyalty: " + weightedRandom(loyaltyArray, weightArray)]
 }
 
 function generateStats(numToGenerate) {
-	var generatedStats = [];
+	/*var generatedStats = [];
 	var remainingToGenerate = numToGenerate;
 	while (remainingToGenerate > 0) {
-		const newStats = getStats();
+		const newStats = getStats(numToGenerate);
 		if (!generatedStats.includes(newStats)) {
 			generatedStats.push(newStats);
 			remainingToGenerate = remainingToGenerate - 1;
 		}
 	}
-	return generatedStats;
+	return generatedStats;*/
+	
+	return getStats(numToGenerate);
+	//return [];
 }
