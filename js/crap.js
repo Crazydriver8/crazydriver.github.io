@@ -217,6 +217,7 @@ $(document).ready(function() {
 		var cardsInSpread = eval(document.getElementById("tarotCardNum").value);
 		var spreadCount = eval(document.getElementById("tarotSpreadNum").value);
 		var useStrings = eval(document.getElementById("tarotUseStrings").checked);
+		var useInverse = eval(document.getElementById("tarotUseInverse").checked);
 		
 		var tarotStrings = ["The Fool", "The Magician", "The High Priestess", "The Empress", "The Emperor", "The Hierophant",
 							"The Lovers", "The Chariot", "Strength", "The Hermit", "Wheel of Fortune", "Justice", "The Hanged Man",
@@ -250,6 +251,10 @@ $(document).ready(function() {
 					randTarot = tarotStrings[randTarotNum - 1];
 				} else {
 					randTarot = randTarotNum;
+				}
+				
+				if (useInverse && Math.floor(Math.random() * 2) == 0) {
+					randTarot = randTarot + " (inverted)"
 				}
 				if (!spreadArray.includes(randTarot)) {
 					spreadArray.push(randTarot);
