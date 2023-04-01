@@ -647,3 +647,20 @@ audio {
 	background-color: #b48811; /* Green */
 	color: white;
 }
+
+th {
+	color: white;
+}
+
+td {
+	color: white;
+}
+
+tr {
+	color: white;
+}
+
+input {
+	color: white;
+	padding: 20px;
+}

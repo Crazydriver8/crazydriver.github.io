@@ -1093,3 +1093,254 @@ function generateStats(numToGenerate) {
 	return getStats(numToGenerate);
 	//return [];
 }
+
+function formatAiPrompt(excelRows) {
+	// Parse Col A for first number to determine relationships
+	
+	// Intro:
+	/*
+		Popover (he/him) is in love with Chive (she/her), and Chive loves him back. 
+
+		Everyone has good traits and bad traits.
+	*/
+	
+	// Person A Example:
+	/*
+		Popover's personality is that he's Authoritative; Honorable;	Cautious; and Trusting as well as	Stubborn; Overbearing;	Frivolous; and Gullible
+	*/
+	
+	// Person B Example:
+	/*
+		Chive's personality is that she's Nurturing; Authoritative;	Resourceful; and Just as well as	Stubborn; Self-Righteous;	Unforgiving; and Defiant
+	*/
+	
+	// Combined Prompt
+	/*
+		List 3 reasons why Popover loves Chive.  List 3 reasons why Chive loves Popover.  List 3 things that they sometimes disagree on or need to work on as a couple.
+	*/
+	
+	var relationshipHolder = [];
+	
+	//Add the data rows from Excel file.
+	for (var i = 0; i < excelRows.length; i++) {
+		//console.log(excelRows[i]);
+		var relationships = excelRows[i].Pairing;
+		var relationshipNumber = relationships.substring(0,3);
+		if (!relationshipHolder.includes(relationshipNumber)) {
+			//console.log("CHECKING FOR RELATIONSHIPS: " + relationshipNumber);
+			for (var j = 0; j < excelRows.length; j++) {
+				var checkingRelationship = excelRows[j].Pairing;
+				var checkingRelationshipNumber = checkingRelationship.substring(0,3);
+				if (relationshipNumber == checkingRelationshipNumber 
+					&& excelRows[i].Name != excelRows[j].Name) {
+					//console.log("FOUND RELATION! " + excelRows[i].Name + " AND " + excelRows[j].Name);
+					relationshipHolder.push(relationshipNumber);
+					
+					// Format String!
+					var name1 = excelRows[i].Name;
+					var id1 = excelRows[i].Identity;
+					var personality1 = excelRows[i].Personality;
+					var goodTraits1 = excelRows[i].GoodTraits;
+					var badTraits1 = excelRows[i].BadTraits;
+					var badderTraits1 = excelRows[i].BadderTraits;
+					
+					var name2 = excelRows[j].Name;
+					var id2 = excelRows[j].Identity;
+					var personality2 = excelRows[j].Personality;
+					var goodTraits2 = excelRows[j].GoodTraits;
+					var badTraits2 = excelRows[j].BadTraits;
+					var badderTraits2 = excelRows[j].BadderTraits;
+			
+					var outputString = "";
+					
+					// Popover (he/him) is in love with Chive (she/her), and Chive loves him back. 
+					// Everyone has good traits and bad traits.
+					console.log(name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.");
+					console.log("Everyone has good traits and bad traits.");
+					
+					outputString += name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.\n";
+					outputString += "Everyone has good traits and bad traits.\n";
+					
+					// Popover's personality is that he's Authoritative; Honorable;	Cautious; and Trusting as well as	Stubborn; Overbearing;	Frivolous; and Gullible
+					console.log(name1 + "'s personality is that " + pronounConverter(id1, 1) + " " + personality1 + " " + goodTraits1 + " " + badTraits1 + " " + badderTraits1);
+					console.log(name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2);
+					
+					outputString += name1 + "'s personality is that " + pronounConverter(id1, 1) + " " + personality1 + " " + goodTraits1 + " " + badTraits1 + " " + badderTraits1 + "\n";
+					outputString += name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2 + "\n";
+					
+					// List 3 reasons why Popover loves Chive.  List 3 reasons why Chive loves Popover.  List 3 things that they sometimes disagree on or need to work on as a couple.
+					console.log("List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.");
+					outputString += "List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.\n";
+					
+					const headerNode = document.createElement("p");
+					headerNode.style.setProperty('color', 'white');
+					const textHeaderNode = document.createTextNode(outputString);
+					headerNode.appendChild(textHeaderNode);
+					document.getElementById("stringOutputZone").appendChild(headerNode);
+					const emptyNode = document.createElement("p");
+					const emptyHeaderNode = document.createTextNode(" ");
+					emptyNode.appendChild(emptyHeaderNode);
+					document.getElementById("stringOutputZone").appendChild(emptyNode);
+				}
+			}
+		}
+	}
+}
+
+function pronounConverter(identity, num) {
+	var returnString = "";
+	
+	switch(identity) {
+		case 'Cis-Girl':
+		case 'Trans-Girl':
+			if (num == 1) {
+				returnString = "she is";
+			} else if (num == 2) {
+				returnString = "her";
+			} else {
+				returnString = "(she/her)";
+			}
+		case 'Cis-Boy':
+		case 'Trans-Boy':
+			if (num == 1) {
+				returnString = "he is";
+			} else if (num == 2) {
+				returnString = "him";
+			} else {
+				returnString = "(he/him)";
+			}
+		case 'Nonbinary':
+			if (num == 1) {
+				returnString = "they are";
+			} else if (num == 2) {
+				returnString = "them";
+			} else {
+				returnString = "(they/them)";
+			}
+	}
+	
+	return returnString;
+}
+
+function UploadProcess() {
+	//Reference the FileUpload element.
+	var fileUpload = document.getElementById("fileUpload");
+
+	//Validate whether File is valid Excel file.
+	var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+	if (regex.test(fileUpload.value.toLowerCase())) {
+		if (typeof (FileReader) != "undefined") {
+			var reader = new FileReader();
+
+			//For Browsers other than IE.
+			if (reader.readAsBinaryString) {
+				reader.onload = function (e) {
+					GetTableFromExcel(e.target.result);
+				};
+				reader.readAsBinaryString(fileUpload.files[0]);
+			} else {
+				//For IE Browser.
+				reader.onload = function (e) {
+					var data = "";
+					var bytes = new Uint8Array(e.target.result);
+					for (var i = 0; i < bytes.byteLength; i++) {
+						data += String.fromCharCode(bytes[i]);
+					}
+					GetTableFromExcel(data);
+				};
+				reader.readAsArrayBuffer(fileUpload.files[0]);
+			}
+		} else {
+			alert("This browser does not support HTML5.");
+		}
+	} else {
+		alert("Please upload a valid Excel file.");
+	}
+}
+
+function GetTableFromExcel(data) {
+	//Read the Excel File data in binary
+	var workbook = XLSX.read(data, {
+		type: 'binary'
+	});
+
+	//get the name of First Sheet.
+	var Sheet = workbook.SheetNames[0];
+
+	//Read all rows from First Sheet into an JSON array.
+	var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[Sheet]);
+
+	// outputHtmlExcelTable(excelRows);
+	
+	formatAiPrompt(excelRows);
+
+	var ExcelTable = document.getElementById("ExcelTable");
+	ExcelTable.innerHTML = "";
+	ExcelTable.appendChild(myTable);
+}
+
+function outputHtmlExcelTable(excelRows) {
+	//Create a HTML Table element.
+	var myTable  = document.createElement("table");
+	myTable.border = "1";
+
+	//Add the header row.
+	var row = myTable.insertRow(-1);
+
+	//Add the header cells.
+	var headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Pairing";
+	row.appendChild(headerCell);
+
+	headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Name";
+	row.appendChild(headerCell);
+
+	headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Identity";
+	row.appendChild(headerCell);
+	
+	headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Personality";
+	row.appendChild(headerCell);
+	
+	headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Good Traits";
+	row.appendChild(headerCell);
+	 
+	headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Bad Traits";
+	row.appendChild(headerCell);
+	
+	headerCell = document.createElement("TH");
+	headerCell.innerHTML = "Badder Traits";
+	row.appendChild(headerCell);
+
+	//Add the data rows from Excel file.
+	for (var i = 0; i < excelRows.length; i++) {
+		//Add the data row.
+		var row = myTable.insertRow(-1);
+
+		//Add the data cells.
+		var cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].Pairing;
+
+		cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].Name;
+
+		cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].Identity;
+		
+		cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].Personality;
+		
+		cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].GoodTraits;
+		
+		cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].BadTraits;
+		
+		cell = row.insertCell(-1);
+		cell.innerHTML = excelRows[i].BadderTraits;
+	}
+}

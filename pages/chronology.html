@@ -23,6 +23,7 @@
 			<button class="tablinks" onclick="openTab(event, 'colorAttributeGenerator')">Color Attribute Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'storyGenerator')">Story Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'statGenerator')">Pet Generator</button>
+			<button class="tablinks" onclick="openTab(event, 'aiPromptGenerator')">AI Prompt Generator</button>
         </div>
         <!-- <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
@@ -182,7 +183,20 @@
 			<div id="statAnswer" class="normAnswer"></div>
         </div>
 		
+		<div id="aiPromptGenerator" class="tabcontent">
+			<input type="file" id="fileUpload" />
+			<input type="button" id="upload" value="Upload" onclick="UploadProcess()" style="color: black;" />
+			<br/>
+			
+			<div id="stringOutputZone" />
+
+			<div id="ExcelTable"></div>
+		</div>
+		
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="../js/crap.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/xlsx.full.min.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.5/jszip.js"></script>
+		<script type="text/javascript">
     </body>
 </html>
