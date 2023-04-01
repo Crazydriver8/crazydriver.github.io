@@ -1157,6 +1157,7 @@ function formatAiPrompt(excelRows) {
 							
 							// Popover (he/him) is in love with Chive (she/her), and Chive loves him back. 
 							// Everyone has good traits and bad traits.
+							console.log(relationshipNumber + ": ");
 							console.log(name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.");
 							console.log("Everyone has good traits and bad traits.");
 							
@@ -1171,8 +1172,8 @@ function formatAiPrompt(excelRows) {
 							outputString += name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2 + "\n";
 							
 							// List 3 reasons why Popover loves Chive.  List 3 reasons why Chive loves Popover.  List 3 things that they sometimes disagree on or need to work on as a couple.
-							console.log("List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.");
-							outputString += "List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.\n";
+							console.log(relationshipNumber + ": List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.");
+							outputString += relationshipNumber + ": List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.\n";
 							
 							const headerNode = document.createElement("p");
 							headerNode.style.setProperty('color', 'white');
