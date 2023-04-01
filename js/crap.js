@@ -1204,6 +1204,7 @@ function pronounConverter(identity, num) {
 			} else {
 				returnString = "(she/her)";
 			}
+			break;
 		case 'Cis-Boy':
 		case 'Trans-Boy':
 			if (num == 1) {
@@ -1213,6 +1214,7 @@ function pronounConverter(identity, num) {
 			} else {
 				returnString = "(he/him)";
 			}
+			break;
 		case 'Nonbinary':
 			if (num == 1) {
 				returnString = "they are";
@@ -1221,6 +1223,7 @@ function pronounConverter(identity, num) {
 			} else {
 				returnString = "(they/them)";
 			}
+			break;
 	}
 	
 	return returnString;
