@@ -1124,63 +1124,67 @@ function formatAiPrompt(excelRows) {
 	//Add the data rows from Excel file.
 	for (var i = 0; i < excelRows.length; i++) {
 		//console.log(excelRows[i]);
-		var relationships = excelRows[i].Pairing;
-		var relationshipNumber = relationships.substring(0,3);
-		if (!relationshipHolder.includes(relationshipNumber)) {
-			//console.log("CHECKING FOR RELATIONSHIPS: " + relationshipNumber);
-			for (var j = 0; j < excelRows.length; j++) {
-				var checkingRelationship = excelRows[j].Pairing;
-				var checkingRelationshipNumber = checkingRelationship.substring(0,3);
-				if (relationshipNumber == checkingRelationshipNumber 
-					&& excelRows[i].Name != excelRows[j].Name) {
-					//console.log("FOUND RELATION! " + excelRows[i].Name + " AND " + excelRows[j].Name);
-					relationshipHolder.push(relationshipNumber);
+		var relationships = excelRows[i].Pairing.split(',');
+		for (var k = 0; k < relationships.length; k++) {
+			var relationshipNumber = relationships[k].substring(0,3);
+			if (!relationshipHolder.includes(relationshipNumber)) {
+				//console.log("CHECKING FOR RELATIONSHIPS: " + relationshipNumber);
+				for (var j = 0; j < excelRows.length; j++) {
+					var checkingRelationship = excelRows[j].Pairing.split(',');
+					for (var p = 0; p < checkingRelationship.length; p++) {
+						var checkingRelationshipNumber = checkingRelationship[p].substring(0,3);
+						if (relationshipNumber == checkingRelationshipNumber 
+							&& excelRows[i].Name != excelRows[j].Name) {
+							//console.log("FOUND RELATION! " + excelRows[i].Name + " AND " + excelRows[j].Name);
+							relationshipHolder.push(relationshipNumber);
+							
+							// Format String!
+							var name1 = excelRows[i].Name;
+							var id1 = excelRows[i].Identity;
+							var personality1 = excelRows[i].Personality;
+							var goodTraits1 = excelRows[i].GoodTraits;
+							var badTraits1 = excelRows[i].BadTraits;
+							var badderTraits1 = excelRows[i].BadderTraits;
+							
+							var name2 = excelRows[j].Name;
+							var id2 = excelRows[j].Identity;
+							var personality2 = excelRows[j].Personality;
+							var goodTraits2 = excelRows[j].GoodTraits;
+							var badTraits2 = excelRows[j].BadTraits;
+							var badderTraits2 = excelRows[j].BadderTraits;
 					
-					// Format String!
-					var name1 = excelRows[i].Name;
-					var id1 = excelRows[i].Identity;
-					var personality1 = excelRows[i].Personality;
-					var goodTraits1 = excelRows[i].GoodTraits;
-					var badTraits1 = excelRows[i].BadTraits;
-					var badderTraits1 = excelRows[i].BadderTraits;
-					
-					var name2 = excelRows[j].Name;
-					var id2 = excelRows[j].Identity;
-					var personality2 = excelRows[j].Personality;
-					var goodTraits2 = excelRows[j].GoodTraits;
-					var badTraits2 = excelRows[j].BadTraits;
-					var badderTraits2 = excelRows[j].BadderTraits;
-			
-					var outputString = "";
-					
-					// Popover (he/him) is in love with Chive (she/her), and Chive loves him back. 
-					// Everyone has good traits and bad traits.
-					console.log(name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.");
-					console.log("Everyone has good traits and bad traits.");
-					
-					outputString += name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.\n";
-					outputString += "Everyone has good traits and bad traits.\n";
-					
-					// Popover's personality is that he's Authoritative; Honorable;	Cautious; and Trusting as well as	Stubborn; Overbearing;	Frivolous; and Gullible
-					console.log(name1 + "'s personality is that " + pronounConverter(id1, 1) + " " + personality1 + " " + goodTraits1 + " " + badTraits1 + " " + badderTraits1);
-					console.log(name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2);
-					
-					outputString += name1 + "'s personality is that " + pronounConverter(id1, 1) + " " + personality1 + " " + goodTraits1 + " " + badTraits1 + " " + badderTraits1 + "\n";
-					outputString += name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2 + "\n";
-					
-					// List 3 reasons why Popover loves Chive.  List 3 reasons why Chive loves Popover.  List 3 things that they sometimes disagree on or need to work on as a couple.
-					console.log("List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.");
-					outputString += "List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.\n";
-					
-					const headerNode = document.createElement("p");
-					headerNode.style.setProperty('color', 'white');
-					const textHeaderNode = document.createTextNode(outputString);
-					headerNode.appendChild(textHeaderNode);
-					document.getElementById("stringOutputZone").appendChild(headerNode);
-					const emptyNode = document.createElement("p");
-					const emptyHeaderNode = document.createTextNode(" ");
-					emptyNode.appendChild(emptyHeaderNode);
-					document.getElementById("stringOutputZone").appendChild(emptyNode);
+							var outputString = "";
+							
+							// Popover (he/him) is in love with Chive (she/her), and Chive loves him back. 
+							// Everyone has good traits and bad traits.
+							console.log(name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.");
+							console.log("Everyone has good traits and bad traits.");
+							
+							outputString += name1 + " " + pronounConverter(id1, 0) + " is in love with " + name2 + " " + pronounConverter(id2, 0) + ", and " + name2 + " loves " + pronounConverter(id1, 2) + " back.\n";
+							outputString += "Everyone has good traits and bad traits.\n";
+							
+							// Popover's personality is that he's Authoritative; Honorable;	Cautious; and Trusting as well as	Stubborn; Overbearing;	Frivolous; and Gullible
+							console.log(name1 + "'s personality is that " + pronounConverter(id1, 1) + " " + personality1 + " " + goodTraits1 + " " + badTraits1 + " " + badderTraits1);
+							console.log(name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2);
+							
+							outputString += name1 + "'s personality is that " + pronounConverter(id1, 1) + " " + personality1 + " " + goodTraits1 + " " + badTraits1 + " " + badderTraits1 + "\n";
+							outputString += name2 + "'s personality is that " + pronounConverter(id2, 1) + " " + personality2 + " " + goodTraits2 + " " + badTraits2 + " " + badderTraits2 + "\n";
+							
+							// List 3 reasons why Popover loves Chive.  List 3 reasons why Chive loves Popover.  List 3 things that they sometimes disagree on or need to work on as a couple.
+							console.log("List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.");
+							outputString += "List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.\n";
+							
+							const headerNode = document.createElement("p");
+							headerNode.style.setProperty('color', 'white');
+							const textHeaderNode = document.createTextNode(outputString);
+							headerNode.appendChild(textHeaderNode);
+							document.getElementById("stringOutputZone").appendChild(headerNode);
+							const emptyNode = document.createElement("p");
+							const emptyHeaderNode = document.createTextNode(" ");
+							emptyNode.appendChild(emptyHeaderNode);
+							document.getElementById("stringOutputZone").appendChild(emptyNode);
+						}
+					}
 				}
 			}
 		}
