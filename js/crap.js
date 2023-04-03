@@ -1193,6 +1193,7 @@ function formatAiZodiacPrompt(excelRows) {
 		Create a story of Soliel's life so far based on this information.
 	*/
 	for (var i = 0; i < excelRows.length; i++) {
+		var idNumber = excelRows[i].IDNumber;
 		var name = excelRows[i].Name;
 		var gender = excelRows[i].Gender;
 		var age = excelRows[i].Age;
@@ -1205,7 +1206,8 @@ function formatAiZodiacPrompt(excelRows) {
 		var cardReadingStr = excelRows[i].CardReading.replace('[','').replace(']','');
 		var cardReading = cardReadingStr.split(",");
 		
-		var outputString = "I would like to use elements of astrology readings and tarot card readings to generate the fictional past, present, and future of characters in a fantasy novel. ";
+		var outputString = idNumber + " - ";
+		outputString += "I would like to use elements of astrology readings and tarot card readings to generate the fictional past, present, and future of characters in a fantasy novel. ";
 		outputString += name + " " + pronounConverter(gender, 0) + " is " + age + " years old and was born on " + birthMonth + " " + birthDate + dateSuffix(birthDate) + ". ";
 		outputString += "Everyone has good and bad traits, and " + name + " is " + goodTraits + gooderTraits + " as well as " + badTraits + badderTraits + ". ";
 		outputString += "In a tarot reading for " + pronounConverter(gender, 2) + ", " + cardReading[0] + " was pulled to represent " + pronounConverter(gender, 3) + " early childhood. ";
