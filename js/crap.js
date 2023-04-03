@@ -316,6 +316,8 @@ $(document).ready(function() {
 });
 
 function openTab(evt, tabName) {
+	console.log("OPENING " + tabName);
+	
     // Declare all variables
     var i, tabcontent, tablinks;
 
@@ -1094,28 +1096,12 @@ function generateStats(numToGenerate) {
 	//return [];
 }
 
-function formatAiPrompt(excelRows) {
-	// Parse Col A for first number to determine relationships
-	
-	// Intro:
+function formatRelationshipPrompt(excelRows) {
 	/*
 		Popover (he/him) is in love with Chive (she/her), and Chive loves him back. 
-
 		Everyone has good traits and bad traits.
-	*/
-	
-	// Person A Example:
-	/*
 		Popover's personality is that he's Authoritative; Honorable;	Cautious; and Trusting as well as	Stubborn; Overbearing;	Frivolous; and Gullible
-	*/
-	
-	// Person B Example:
-	/*
 		Chive's personality is that she's Nurturing; Authoritative;	Resourceful; and Just as well as	Stubborn; Self-Righteous;	Unforgiving; and Defiant
-	*/
-	
-	// Combined Prompt
-	/*
 		List 3 reasons why Popover loves Chive.  List 3 reasons why Chive loves Popover.  List 3 things that they sometimes disagree on or need to work on as a couple.
 	*/
 	
@@ -1176,7 +1162,7 @@ function formatAiPrompt(excelRows) {
 							outputString += relationshipNumber + ": List 3 reasons why " + name1 + " loves " + name2 + ". List 3 reasons why " + name2 + " loves " + name1 + ". List 3 things that they sometimes disagree on or need to work on as a couple.\n";
 							
 							const headerNode = document.createElement("p");
-							headerNode.style.setProperty('color', 'white');
+							headerNode.style.setProperty('color', 'white'); 
 							const textHeaderNode = document.createTextNode(outputString);
 							headerNode.appendChild(textHeaderNode);
 							document.getElementById("stringOutputZone").appendChild(headerNode);
@@ -1192,6 +1178,67 @@ function formatAiPrompt(excelRows) {
 	}
 }
 
+function formatAiZodiacPrompt(excelRows) {
+	/*
+		I would like to use elements of astrology readings and tarot card readings to generate the fictional past, present, and future of characters in a fantasy novel
+
+		Soliel Firelight (he/him) is 21 years old and was born on October 13th.  
+
+		Everyone has good and bad traits, and Soliel is Stubborn; Overbearing;	Authoritative; Generous;	Inhibited; and Perfectionist	Orderly; and Industrious as well as
+
+		In a tarot reading for him, The Lovers card was pulled to represent his early childhood.
+		The 3 of Pentacles was pulled to represent his early adolescence.
+		and The King of Cups was pulled to represent his early adulthood.
+
+		Create a story of Soliel's life so far based on this information.
+	*/
+	for (var i = 0; i < excelRows.length; i++) {
+		var name = excelRows[i].Name;
+		var gender = excelRows[i].Gender;
+		var age = excelRows[i].Age;
+		var birthMonth = excelRows[i].BirthMonth;
+		var birthDate = excelRows[i].BirthDate;
+		var goodTraits = excelRows[i].GoodTraits;
+		var gooderTraits = excelRows[i].GooderTraits;
+		var badTraits = excelRows[i].BadTraits;
+		var badderTraits = excelRows[i].BadderTraits;
+		var cardReadingStr = excelRows[i].CardReading.replace('[','').replace(']','');
+		var cardReading = cardReadingStr.split(",");
+		
+		var outputString = "I would like to use elements of astrology readings and tarot card readings to generate the fictional past, present, and future of characters in a fantasy novel. ";
+		outputString += name + " " + pronounConverter(gender, 0) + " is " + age + " years old and was born on " + birthMonth + " " + birthDate + dateSuffix(birthDate) + ". ";
+		outputString += "Everyone has good and bad traits, and " + name + " is " + goodTraits + gooderTraits + " as well as " + badTraits + badderTraits + ". ";
+		outputString += "In a tarot reading for " + pronounConverter(gender, 2) + ", " + cardReading[0] + " was pulled to represent " + pronounConverter(gender, 3) + " early childhood. ";
+		outputString += cardReading[1] + " was pulled to represent " + pronounConverter(gender, 3) + " early adolescence. ";
+		outputString += "and " + cardReading[2] + " was pulled to represent " + pronounConverter(gender, 3) + " early adulthood. ";
+		outputString += "Create a story of " + name + "'s life so far based on this information.";
+		
+		//console.log(outputString);
+		
+		const headerNode = document.createElement("p");
+		headerNode.style.setProperty('color', 'white'); 
+		const textHeaderNode = document.createTextNode(outputString);
+		headerNode.appendChild(textHeaderNode);
+		document.getElementById("stringOutputZone2").appendChild(headerNode);
+	}
+}
+
+function dateSuffix(date) {
+	switch(date) {
+		case 1:
+		case "1":
+			return "st";
+		case 2:
+		case "2":
+			return "nd";
+		case 3:
+		case "3":
+			return "rd";
+		default:
+			return "th";
+	}
+}
+
 function pronounConverter(identity, num) {
 	var returnString = "";
 	
@@ -1201,6 +1248,8 @@ function pronounConverter(identity, num) {
 			if (num == 1) {
 				returnString = "she is";
 			} else if (num == 2) {
+				returnString = "her";
+			} else if (num == 3) {
 				returnString = "her";
 			} else {
 				returnString = "(she/her)";
@@ -1212,6 +1261,8 @@ function pronounConverter(identity, num) {
 				returnString = "he is";
 			} else if (num == 2) {
 				returnString = "him";
+			} else if (num == 3) {
+				returnString = "his";
 			} else {
 				returnString = "(he/him)";
 			}
@@ -1221,6 +1272,8 @@ function pronounConverter(identity, num) {
 				returnString = "they are";
 			} else if (num == 2) {
 				returnString = "them";
+			} else if (num == 3) {
+				returnString = "their";
 			} else {
 				returnString = "(they/them)";
 			}
@@ -1230,6 +1283,7 @@ function pronounConverter(identity, num) {
 	return returnString;
 }
 
+	
 function UploadProcess() {
 	//Reference the FileUpload element.
 	var fileUpload = document.getElementById("fileUpload");
@@ -1243,7 +1297,7 @@ function UploadProcess() {
 			//For Browsers other than IE.
 			if (reader.readAsBinaryString) {
 				reader.onload = function (e) {
-					GetTableFromExcel(e.target.result);
+					GetTableFromExcel(e.target.result, 1);
 				};
 				reader.readAsBinaryString(fileUpload.files[0]);
 			} else {
@@ -1254,7 +1308,7 @@ function UploadProcess() {
 					for (var i = 0; i < bytes.byteLength; i++) {
 						data += String.fromCharCode(bytes[i]);
 					}
-					GetTableFromExcel(data);
+					GetTableFromExcel(data, 1);
 				};
 				reader.readAsArrayBuffer(fileUpload.files[0]);
 			}
@@ -1266,7 +1320,44 @@ function UploadProcess() {
 	}
 }
 
-function GetTableFromExcel(data) {
+function UploadProcess2() {
+	//Reference the FileUpload element.
+	var fileUpload = document.getElementById("fileUpload2");
+
+	//Validate whether File is valid Excel file.
+	var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+	if (regex.test(fileUpload.value.toLowerCase())) {
+		if (typeof (FileReader) != "undefined") {
+			var reader = new FileReader();
+
+			//For Browsers other than IE.
+			if (reader.readAsBinaryString) {
+				reader.onload = function (e) {
+					GetTableFromExcel(e.target.result, 2);
+				};
+				reader.readAsBinaryString(fileUpload.files[0]);
+			} else {
+				//For IE Browser.
+				reader.onload = function (e) {
+					var data = "";
+					var bytes = new Uint8Array(e.target.result);
+					for (var i = 0; i < bytes.byteLength; i++) {
+						data += String.fromCharCode(bytes[i]);
+					}
+					GetTableFromExcel(data, 2);
+				};
+				reader.readAsArrayBuffer(fileUpload.files[0]);
+			}
+		} else {
+			alert("This browser does not support HTML5.");
+		}
+	} else {
+		alert("Please upload a valid Excel file.");
+	}
+}
+
+function GetTableFromExcel(data, type) {
+	console.log("TYPE : " + type);
 	//Read the Excel File data in binary
 	var workbook = XLSX.read(data, {
 		type: 'binary'
@@ -1279,12 +1370,16 @@ function GetTableFromExcel(data) {
 	var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[Sheet]);
 
 	// outputHtmlExcelTable(excelRows);
-	
-	formatAiPrompt(excelRows);
+	console.log("TYPE IS " + type);
+	if (type == 1 || type == "1") {	
+		formatRelationshipPrompt(excelRows);
+	} else if (type == 2 || type == "2") {
+		formatAiZodiacPrompt(excelRows);
+	}
 
 	var ExcelTable = document.getElementById("ExcelTable");
 	ExcelTable.innerHTML = "";
-	ExcelTable.appendChild(myTable);
+	//ExcelTable.appendChild(myTable);
 }
 
 function outputHtmlExcelTable(excelRows) {

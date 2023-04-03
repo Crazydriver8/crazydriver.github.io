@@ -23,7 +23,8 @@
 			<button class="tablinks" onclick="openTab(event, 'colorAttributeGenerator')">Color Attribute Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'storyGenerator')">Story Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'statGenerator')">Pet Generator</button>
-			<button class="tablinks" onclick="openTab(event, 'aiPromptGenerator')">AI Prompt Generator</button>
+			<button class="tablinks" onclick="openTab(event, 'relationshipPromptGenerator')">Relationship Prompt Generator</button>
+			<button class="tablinks" onclick="openTab(event, 'zodiacTarotPromptGenerator')">Zodiac Tarot Prompt Generator</button>
         </div>
         <!-- <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
@@ -183,12 +184,25 @@
 			<div id="statAnswer" class="normAnswer"></div>
         </div>
 		
-		<div id="aiPromptGenerator" class="tabcontent">
-			<input type="file" id="fileUpload" />
+		<div id="relationshipPromptGenerator" class="tabcontent">
+			<p id="chronoTitle" style="padding:10px;">Relationship Prompt Generator</p>
+			<input type="file" id="fileUpload" dataArg='1' />
 			<input type="button" id="upload" value="Upload" onclick="UploadProcess()" style="color: black;" />
 			<br/>
 			
 			<div id="stringOutputZone" />
+
+			<div id="ExcelTable"></div>
+		</div>
+		</div>
+		
+		<div id="zodiacTarotPromptGenerator" class="tabcontent">
+			<p id="chronoTitle" style="padding:10px;">Zodiac Tarot Prompt Generator</p>
+			<input type="file" id="fileUpload2" dataArg='2' />
+			<input type="button" id="upload" value="Upload" onclick="UploadProcess2()" style="color: black;" />
+			<br/>
+			
+			<div id="stringOutputZone2" />
 
 			<div id="ExcelTable"></div>
 		</div>
