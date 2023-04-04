@@ -315,25 +315,19 @@ $(document).ready(function() {
 	});
 });
 
-function openTab(evt, tabName) {
-	console.log("OPENING " + tabName);
-	
-    // Declare all variables
+function openTab(evt, tabName) {	
     var i, tabcontent, tablinks;
 
-    // Get all elements with class="tabcontent" and hide them
     tabcontent = document.getElementsByClassName("tabcontent");
     for (i = 0; i < tabcontent.length; i++) {
         tabcontent[i].style.display = "none";
     }
 
-    // Get all elements with class="tablinks" and remove the class "active"
     tablinks = document.getElementsByClassName("tablinks");
     for (i = 0; i < tablinks.length; i++) {
         tablinks[i].className = tablinks[i].className.replace(" active", "");
     }
 
-    // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(tabName).style.display = "block";
     evt.currentTarget.className += " active";
 }
@@ -344,7 +338,6 @@ var shopList = [
     { "name": "Adam's Assault Association ", "opened": "1999-11-12", "closed": "1999-11-13", "opentime": "00:00", "closetime": "24:00" }
 ];
 
-// Builds the HTML Table out of shopList.
 function buildHtmlTable() {
     var columns = addAllColumnHeaders(shopList);
 
@@ -361,9 +354,6 @@ function buildHtmlTable() {
     }
 }
 
-// Adds a header row to the table and returns the set of columns.
-// Need to do union of keys from all records as some records may not contain
-// all records.
 function addAllColumnHeaders(shopList, selector) {
     var columnSet = [];
     var headerTr$ = $('<tr/>');
@@ -734,11 +724,7 @@ function checkIfIncludes(testArray, testVal) {
 }
 
 function getStats(numToGenerate) {
-	// choose 1 (one) from each array
 	const weightArray = [5,25,25,25,20]
-	
-	//var retArray = Array.from(Array(numToGenerate), () => new Array(5));
-	//statArray = Array(numToGenerate).fill("").map(() => Array(5));
 	var retArray = new Array(numToGenerate).fill(0).map(() => new Array(5).fill(0));
 	
 	console.log(retArray);
@@ -1073,27 +1059,11 @@ function getStats(numToGenerate) {
 		retArray[loyPos][4] = "Loyalty: " + loyaltyArray[4]
 	}
 	
-	console.log(retArray);
-	
 	return retArray;
-		
-	//return ["Intelligence: " + weightedRandom(intellectArray, weightArray), "Strength: " + weightedRandom(strengthArray, weightArray), "Stealth: " + weightedRandom(stealthArray, weightArray), "Senses: " + weightedRandom(sensesArray, weightArray), "Loyalty: " + weightedRandom(loyaltyArray, weightArray)]
 }
 
 function generateStats(numToGenerate) {
-	/*var generatedStats = [];
-	var remainingToGenerate = numToGenerate;
-	while (remainingToGenerate > 0) {
-		const newStats = getStats(numToGenerate);
-		if (!generatedStats.includes(newStats)) {
-			generatedStats.push(newStats);
-			remainingToGenerate = remainingToGenerate - 1;
-		}
-	}
-	return generatedStats;*/
-	
 	return getStats(numToGenerate);
-	//return [];
 }
 
 function formatRelationshipPrompt(excelRows) {
@@ -1109,19 +1079,16 @@ function formatRelationshipPrompt(excelRows) {
 	
 	//Add the data rows from Excel file.
 	for (var i = 0; i < excelRows.length; i++) {
-		//console.log(excelRows[i]);
 		var relationships = excelRows[i].Pairing.split(',');
 		for (var k = 0; k < relationships.length; k++) {
 			var relationshipNumber = relationships[k].substring(0,3);
 			if (!relationshipHolder.includes(relationshipNumber)) {
-				//console.log("CHECKING FOR RELATIONSHIPS: " + relationshipNumber);
 				for (var j = 0; j < excelRows.length; j++) {
 					var checkingRelationship = excelRows[j].Pairing.split(',');
 					for (var p = 0; p < checkingRelationship.length; p++) {
 						var checkingRelationshipNumber = checkingRelationship[p].substring(0,3);
 						if (relationshipNumber == checkingRelationshipNumber 
 							&& excelRows[i].Name != excelRows[j].Name) {
-							//console.log("FOUND RELATION! " + excelRows[i].Name + " AND " + excelRows[j].Name);
 							relationshipHolder.push(relationshipNumber);
 							
 							// Format String!
@@ -1225,6 +1192,34 @@ function formatAiZodiacPrompt(excelRows) {
 	}
 }
 
+function formatCharacterIntroPrompt(excelRows) {
+	/*
+		001 -- Crucible Conflagari (He/Him) is a 21 year old Headsborn.  His personality is that he is Authoritative; Generous;	Studious; and Industrious as well as Stubborn; Hot-Headed; Judgmental; and Fanatical.
+	*/
+	for (var i = 0; i < excelRows.length; i++) {
+		var idNumber = excelRows[i].IDNumber;
+		var firstName = excelRows[i].FirstName;
+		var lastName = excelRows[i].LastName
+		var gender = excelRows[i].Gender;
+		var age = excelRows[i].Age;
+		var coinFlip = excelRows[i].Coinflip;
+		var goodTrait = excelRows[i].GoodTrait;
+		var gooderTrait = excelRows[i].GooderTrait;
+		var badTrait = excelRows[i].BadTrait;
+		var badderTrait = excelRows[i].BadderTrait;
+		
+		var outputString = idNumber + " -- ";
+		outputString += firstName + " " + lastName + " " + pronounConverter(gender, 0) + " is a " + age + " year old " + coinFlip + ". ";
+		outputString += pronounConverter(gender, 3) + " personality is that " + pronounConverter(gender, 1) + " " + goodTrait + " " + gooderTrait + " " + badTrait + " " + badderTrait + ". ";
+		
+		const headerNode = document.createElement("p");
+		headerNode.style.setProperty('color', 'white'); 
+		const textHeaderNode = document.createTextNode(outputString);
+		headerNode.appendChild(textHeaderNode);
+		document.getElementById("stringOutputZone3").appendChild(headerNode);
+	}
+}
+
 function dateSuffix(date) {
 	switch(date) {
 		case 1:
@@ -1285,11 +1280,7 @@ function pronounConverter(identity, num) {
 	return returnString;
 }
 
-	
-function UploadProcess() {
-	//Reference the FileUpload element.
-	var fileUpload = document.getElementById("fileUpload");
-
+function UploadProcess(fileUpload, type) {
 	//Validate whether File is valid Excel file.
 	var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
 	if (regex.test(fileUpload.value.toLowerCase())) {
@@ -1299,7 +1290,7 @@ function UploadProcess() {
 			//For Browsers other than IE.
 			if (reader.readAsBinaryString) {
 				reader.onload = function (e) {
-					GetTableFromExcel(e.target.result, 1);
+					GetTableFromExcel(e.target.result, type);
 				};
 				reader.readAsBinaryString(fileUpload.files[0]);
 			} else {
@@ -1310,7 +1301,7 @@ function UploadProcess() {
 					for (var i = 0; i < bytes.byteLength; i++) {
 						data += String.fromCharCode(bytes[i]);
 					}
-					GetTableFromExcel(data, 1);
+					GetTableFromExcel(data, type);
 				};
 				reader.readAsArrayBuffer(fileUpload.files[0]);
 			}
@@ -1322,40 +1313,23 @@ function UploadProcess() {
 	}
 }
 
+	
+function UploadProcess1() {
+	// Relationship
+	var fileUpload = document.getElementById("fileUpload");
+	UploadProcess(fileUpload, 1);
+}
+
 function UploadProcess2() {
-	//Reference the FileUpload element.
+	// Zodiac Tarot
 	var fileUpload = document.getElementById("fileUpload2");
+	UploadProcess(fileUpload, 2);
+}
 
-	//Validate whether File is valid Excel file.
-	var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
-	if (regex.test(fileUpload.value.toLowerCase())) {
-		if (typeof (FileReader) != "undefined") {
-			var reader = new FileReader();
-
-			//For Browsers other than IE.
-			if (reader.readAsBinaryString) {
-				reader.onload = function (e) {
-					GetTableFromExcel(e.target.result, 2);
-				};
-				reader.readAsBinaryString(fileUpload.files[0]);
-			} else {
-				//For IE Browser.
-				reader.onload = function (e) {
-					var data = "";
-					var bytes = new Uint8Array(e.target.result);
-					for (var i = 0; i < bytes.byteLength; i++) {
-						data += String.fromCharCode(bytes[i]);
-					}
-					GetTableFromExcel(data, 2);
-				};
-				reader.readAsArrayBuffer(fileUpload.files[0]);
-			}
-		} else {
-			alert("This browser does not support HTML5.");
-		}
-	} else {
-		alert("Please upload a valid Excel file.");
-	}
+function UploadProcess3() {
+	// Character Intro
+	var fileUpload = document.getElementById("fileUpload3");
+	UploadProcess(fileUpload, 3);
 }
 
 function GetTableFromExcel(data, type) {
@@ -1377,6 +1351,8 @@ function GetTableFromExcel(data, type) {
 		formatRelationshipPrompt(excelRows);
 	} else if (type == 2 || type == "2") {
 		formatAiZodiacPrompt(excelRows);
+	} else if (type == 3 || type == "3") {
+		formatCharacterIntroPrompt(excelRows);
 	}
 
 	var ExcelTable = document.getElementById("ExcelTable");
