@@ -1292,6 +1292,8 @@ function formatBioString(excelRow, i, excelRows) {
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Equipment and Items: " + ((excelRow.Equipment) ? excelRow.Equipment : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Skills and Abilities: "));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Hope: " + ((excelRow.Hope) ? excelRow.Hope : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
@@ -1325,6 +1327,8 @@ function formatBioString(excelRow, i, excelRows) {
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Accessibility Tool (if any): " + ((excelRow.Access) ? excelRow.Access : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Fashion Style: " + ((excelRow.Fashion) ? excelRow.Fashion : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Quirks and Habits: "));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Sibling(s): " + ((excelRow.Sibling) ? excelRow.Sibling : '')));
@@ -1367,12 +1371,12 @@ function formatBioString(excelRow, i, excelRows) {
 		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Match Partner(s) (if applicable): " + matchNames));
 		document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	}
-	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Other Relationships: " + excelRow.OtherRelationships));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Other Relationships: " + ((excelRow.OtherRelationships) ? excelRow.OtherRelationships : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
-	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Notoriety: " + excelRow.Notoriety));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Notoriety: " + ((excelRow.Notoriety) ? excelRow.Notoriety : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
-	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Reputation: " + excelRow.Reputation));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Reputation: " + ((excelRow.Reputation) ? excelRow.Reputation : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Personality Traits:"));
@@ -1414,7 +1418,7 @@ function formatBioString(excelRow, i, excelRows) {
 		}
 	}
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
-	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Background: " + excelRow.Background));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Background: " + ((excelRow.Background) ? excelRow.Background : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	var tarot = excelRow.Tarot.replace(/[\[\]']+/g, '').split(",");
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("1. Early Childhood: " + tarot[0]));
