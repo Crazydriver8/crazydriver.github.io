@@ -26,7 +26,7 @@
 			<button class="tablinks" onclick="openTab(event, 'relationshipPromptGenerator')">Relationship Prompt Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'zodiacTarotPromptGenerator')">Zodiac Tarot Prompt Generator</button>
 			<button class="tablinks" onclick="openTab(event, 'characterIntroPromptGenerator')">Character Intro Prompt Generator</button>
-			
+			<button class="tablinks" onclick="openTab(event, 'characterBioGenerator')">Character Bio Generator</button>
         </div>
         <!-- <div id="ageCalc" class="tabcontent">
             <p id="chronoLogo" align="middle" alt="YAY MATH">Alternative Age Calculator<p>
@@ -213,6 +213,18 @@
 			<br/>
 			
 			<div id="stringOutputZone3" />
+			</div>
+		</div>
+		
+		<div id="characterBioGenerator" class="tabcontent">
+			<p id="chronoTitle" style="padding:10px;">Character Bio Generator</p>
+			<p id="chronoTitle">Obsidian Compatible?</p>
+            <input id="bioObsidianCompatible" class="calcInputField" type="checkbox" name="searchTerm"><br>
+			<input type="file" id="fileUpload4" dataArg='bio' />
+			<input type="button" id="upload" value="Upload" onclick="UploadProcess4()" style="color: black;" />
+			<br/>
+			
+			<div id="stringOutputZone4" />
 			</div>
 		</div>
 		

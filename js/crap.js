@@ -1145,6 +1145,285 @@ function formatRelationshipPrompt(excelRows) {
 	}
 }
 
+function formatExcelRow(type, excelRows) {
+	for (var i = 0; i < excelRows.length; i++) {		
+		formatOutputString(type, excelRows, excelRows[i], i);
+	}
+}
+
+function formatOutputString(type, excelRows, excelRow, i) {
+	/*var firstName = excelRows[i].FirstName;
+	var lastName = excelRows[i].LastName;
+	var folk = excelRows[i].Folk;
+	var eoM = excelRows[i].EoM;
+	var flip = excelRows[i].Flip;
+	var level = excelRows[i].Level;
+	var heroTeam = excelRows[i].HeroTeam;
+	var heroHeadsborn = excelRows[i].HeroHeadsborn;
+	var heroTailsborn = excelRows[i].HeroTailsborn;
+	var heroCursed = excelRows[i].HeroCursed;
+	var age = excelRows[i].Age;
+	var gender = excelRows[i].Gender;
+	var birthMonth = excelRows[i].BirthMonth;
+	var birthDay = excelRows[i].BirthDay;
+	var home = excelRows[i].Home;
+	var job = excelRows[i].Job;
+	var wealth = excelRows[i].Wealth;
+	var debt = excelRows[i].Debt;
+	var equipment = excelRows[i].Equipment;
+	var hope = excelRows[i].Hope;
+	var fear = excelRows[i].Fear;
+	var personalBeliefs = excelRows[i].PersonalBeliefs;
+	var politcalTopic = excelRows[i].PolitcalTopic;
+	var currentHeight = excelRows[i].CurrentHeight;
+	var fullGrown = excelRows[i].FullGrown;
+	var build = excelRows[i].Build;
+	var hairLength = excelRows[i].HairLength;
+	var hairTexture = excelRows[i].HairTexture;
+	var hairColor = excelRows[i].HairColor;
+	var eyeColor = excelRows[i].EyeColor;
+	var eyeTraits = excelRows[i].EyeTraits;
+	var complexionColor = excelRows[i].ComplexionColor;
+	var complexionTraits = excelRows[i].ComplexionTraits;
+	var medCon = excelRows[i].MedCon;
+	var access = excelRows[i].Access;
+	var fashion = excelRows[i].Fashion;
+	var sibling = excelRows[i].Sibling;
+	var matchStatus = excelRows[i].MatchStatus;
+	var matchPartner = excelRows[i].MatchPartner;
+	var matchNumber = excelRows[i].MatchNumber;
+	var otherRelationships = excelRows[i].OtherRelationships;
+	var notoriety = excelRows[i].Notoriety;
+	var reputation = excelRows[i].Reputation;
+	var color1Good = excelRows[i].Color1Good;
+	var color2Good = excelRows[i].Color2Good;
+	var color1Bad = excelRows[i].Color1Bad;
+	var color2Bad = excelRows[i].Color2Bad;
+	var background = excelRows[i].Background;
+	var tarot = excelRows[i].Tarot;*/
+	var outputString = "";
+	if (type == "bio") {	
+		formatBioString(excelRow, i, excelRows);
+	}
+	return outputString;
+}
+
+function formatBioString(excelRow, i, excelRows) {
+	var obsidianCompatible = eval(document.getElementById("bioObsidianCompatible").checked);
+	
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("--------------------------------------------------"));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("JUVENALIAN: " + (i + 1)));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("--------------------------------------------------"));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Name: [[" + excelRow.FirstName + " " + excelRow.LastName + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Name: " + excelRow.FirstName + " " + excelRow.LastName));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Folk: [[" + ((excelRow.Folk) ? excelRow.Folk : '') + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Folk: " + ((excelRow.Folk) ? excelRow.Folk : '')));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Elements: " + ((excelRow.EoM) ? excelRow.EoM : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Flip: [[" + ((excelRow.Flip) ? excelRow.Flip : '') + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Flip: " + ((excelRow.Flip) ? excelRow.Flip : '')));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Level: " + ((excelRow.Level) ? excelRow.Level : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Hero Team (if applicable): [[" + ((excelRow.HeroTeam) ? excelRow.HeroTeam : 'Unteamed') + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Hero Team (if applicable): " + ((excelRow.HeroTeam) ? excelRow.HeroTeam : 'Unteamed')));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (excelRow.HeroTeam) {
+		//generate the names of the three members
+		var memberNames = "";
+		for (var j = 0; j < excelRows.length; j++) {
+			if (j != i && excelRows[j].HeroTeam && excelRows[j].HeroTeam == excelRow.HeroTeam) {
+				if (obsidianCompatible) {
+					memberNames += "[[" + excelRows[j].FirstName + " " + excelRows[j].LastName + "]] ; ";
+				} else {
+					memberNames += excelRows[j].FirstName + " " + excelRows[j].LastName + "; ";
+				}
+			}
+		}
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Team Members: " + memberNames));
+		document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Age: [[" + ((excelRow.Age) ? excelRow.Age : '') + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Age: " + ((excelRow.Age) ? excelRow.Age : '')));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Gender: [[" + ((excelRow.Gender) ? excelRow.Gender : '') + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Gender: " + ((excelRow.Gender) ? excelRow.Gender : '')));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Birthday: [[" + excelRow.BirthMonth + " " + excelRow.BirthDay + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Birthday: " + excelRow.BirthMonth + " " + excelRow.BirthDay));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Home: " + ((excelRow.Home) ? excelRow.Home : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Job: " + ((excelRow.Job) ? excelRow.Job : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Wealth: " + ((excelRow.Wealth) ? excelRow.Wealth : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Debt: " + ((excelRow.Debt) ? excelRow.Debt : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Equipment and Items: " + ((excelRow.Equipment) ? excelRow.Equipment : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Hope: " + ((excelRow.Hope) ? excelRow.Hope : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Fear: " + ((excelRow.Fear) ? excelRow.Fear : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Personal Beliefs: " + ((excelRow.PersonalBeliefs) ? excelRow.PersonalBeliefs : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Political Topic: " + ((excelRow.PolitcalTopic) ? excelRow.PolitcalTopic : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Current Height: " + ((excelRow.CurrentHeight) ? excelRow.CurrentHeight : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Full Grown Height: " + ((excelRow.FullGrown) ? excelRow.FullGrown : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Build: " + ((excelRow.Build) ? excelRow.Build : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Hair: " + ((excelRow.Hair) ? excelRow.Hair : 'TBD')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Eyes: " + ((excelRow.Eyes) ? excelRow.Eyes : 'TBD')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Complexion: " + ((excelRow.Complexion) ? excelRow.Complexion : 'TBD')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Medical Considerations: " + ((excelRow.MedCon) ? excelRow.MedCon : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Accessibility Tool (if any): " + ((excelRow.Access) ? excelRow.Access : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Fashion Style: " + ((excelRow.Fashion) ? excelRow.Fashion : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Sibling(s): " + ((excelRow.Sibling) ? excelRow.Sibling : '')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Match Status: " + ((excelRow.MatchNumber) ? 'Matched' : 'Unmatched')));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (obsidianCompatible) {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Match Number (if applicable): [[" + ((excelRow.MatchNumber) ? excelRow.MatchNumber : '') + "]]"));
+	} else {
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Match Number (if applicable): " + excelRow.MatchNumber));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	if (excelRow.MatchNumber) {
+		// SOMETIMES THERE ARE TWO OF THESE"
+		var matches = excelRow.MatchNumber.split(',');
+		if (i == 5) {
+			console.log(matches);
+			console.log(matches.length);
+		}
+		var matchNames = "";
+		for (var n = 0; n < matches.length; n++) {
+			if (i == 5) {
+				console.log(matches[n]);
+			}
+			for (var k = 0; k < excelRows.length; k++) {
+				if (excelRows[k].MatchNumber) {
+					var otherMatches = excelRows[k].MatchNumber.split(',');
+					for (var m = 0; m < otherMatches.length; m++) {
+						if (k != i && otherMatches[m] && otherMatches[m] == matches[n]) {
+							if (obsidianCompatible) {
+								matchNames += "[[" + excelRows[k].FirstName + " " + excelRows[k].LastName + "]]; ";
+							} else {
+								matchNames += excelRows[k].FirstName + " " + excelRows[k].LastName + "; ";
+							}
+						}
+					}
+				}
+			}
+		}
+		document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Match Partner(s) (if applicable): " + matchNames));
+		document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Other Relationships: " + excelRow.OtherRelationships));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Notoriety: " + excelRow.Notoriety));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Reputation: " + excelRow.Reputation));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Personality Traits:"));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	//tokened out of [Color1Good], [Color2Good], [Color1Bad], and [Color2Bad] -- I apologize that that section is a mess, feel free to edit the format however you need.  You can also change the format of the print out below to be easier.  Whatever works.
+	if (excelRow.Color1Good && excelRow.Color2Good && excelRow.Color1Bad && excelRow.Color2Bad) {
+		var color1Good = excelRow.Color1Good.split(';');
+		var color2Good = excelRow.Color2Good.split(';');
+		var color1Bad = excelRow.Color1Bad.split(';');
+		var color2Bad = excelRow.Color2Bad.split(';');
+		var tempCount = 1;
+		for (var i = 0; i < color1Good.length; i++) {
+			if (color1Good[i]) {
+				document.getElementById("stringOutputZone4").appendChild(document.createTextNode(tempCount + ". " + color1Good[i]));
+				document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+				tempCount++;
+			}
+		}
+		for (var i = 0; i < color2Good.length; i++) {
+			if (color2Good[i]) {
+				document.getElementById("stringOutputZone4").appendChild(document.createTextNode(tempCount + ". " + color2Good[i]));
+				document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+				tempCount++;
+			}
+		}
+		for (var i = 0; i < color1Bad.length; i++) {
+			if (color1Bad[i]) {
+				document.getElementById("stringOutputZone4").appendChild(document.createTextNode(tempCount + ". " + color1Bad[i]));
+				document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+				tempCount++;
+			}
+		}
+		for (var i = 0; i < color2Bad.length; i++) {
+			if (color2Bad[i]) {
+				document.getElementById("stringOutputZone4").appendChild(document.createTextNode(tempCount + ". " + color2Bad[i]));
+				document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+				tempCount++;
+			}
+		}
+	}
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Background: " + excelRow.Background));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	var tarot = excelRow.Tarot.replace(/[\[\]']+/g, '').split(",");
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("1. Early Childhood: " + tarot[0]));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("2. Adolescence: " + tarot[1]));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("3. Early Adulthood: " + tarot[2]));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("--------------------------------------------------"));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+}
+
 function formatAiZodiacPrompt(excelRows) {
 	/*
 		I would like to use elements of astrology readings and tarot card readings to generate the fictional past, present, and future of characters in a fantasy novel
@@ -1332,6 +1611,12 @@ function UploadProcess3() {
 	UploadProcess(fileUpload, 3);
 }
 
+function UploadProcess4() {
+	// Character Intro
+	var fileUpload = document.getElementById("fileUpload4");
+	UploadProcess(fileUpload, 'bio');
+}
+
 function GetTableFromExcel(data, type) {
 	console.log("TYPE : " + type);
 	//Read the Excel File data in binary
@@ -1353,10 +1638,12 @@ function GetTableFromExcel(data, type) {
 		formatAiZodiacPrompt(excelRows);
 	} else if (type == 3 || type == "3") {
 		formatCharacterIntroPrompt(excelRows);
+	} else {
+		formatExcelRow(type, excelRows);
 	}
 
-	var ExcelTable = document.getElementById("ExcelTable");
-	ExcelTable.innerHTML = "";
+	//var ExcelTable = document.getElementById("ExcelTable");
+	//ExcelTable.innerHTML = "";
 	//ExcelTable.appendChild(myTable);
 }
 
