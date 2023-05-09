@@ -1297,6 +1297,10 @@ function formatBioString(excelRow, i, excelRows) {
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Fear: " + ((excelRow.Fear) ? excelRow.Fear : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Likes: "));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
+	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Dislikes: "));
+	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
 	document.getElementById("stringOutputZone4").appendChild(document.createTextNode("Personal Beliefs: " + ((excelRow.PersonalBeliefs) ? excelRow.PersonalBeliefs : '')));
 	document.getElementById("stringOutputZone4").appendChild(document.createElement('br'));
